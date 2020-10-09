@@ -1,8 +1,10 @@
 Ubuntu 20.04 CIS STIG
 ================
 
-[![Build Status](https://travis-ci.com/florianutz/Ubuntu2004-CIS.svg?branch=master)](https://travis-ci.com/florianutz/Ubuntu2004-CIS)
-[![Ansible Role](https://img.shields.io/badge/role-florianutz.Ubuntu2004--CIS-blue.svg)](https://galaxy.ansible.com/florianutz/Ubuntu2004-CIS/)
+[![Build Status](https://travis-ci.com/florianutz/ubuntu2004_cis.svg?branch=main)](https://travis-ci.com/florianutz/ubuntu2004_cis)
+[![Ansible Role](https://img.shields.io/badge/role-florianutz.ubuntu2004--cis-blue.svg)](https://galaxy.ansible.com/florianutz/ubuntu2004_cis/)
+
+**This role is based on 18.04 migration. The tasks are correct in content, but have to be re-sorted to fit the 18.04 Benchmark. Contribution welcome.**
 
 Configure Ubuntu 20.04 machine to be CIS compliant. Level 1 and 2 findings will be corrected by default.
 
@@ -20,7 +22,7 @@ With this in the file requirements.yml:
 - src: https://github.com/florianutz/Ubuntu2004-CIS.git
 ```
 
-Based on [CIS Ubuntu Benchmark v2.0.1 - 01-03-2020 ](https://www.cisecurity.org/cis-benchmarks/).
+Based on [CIS Ubuntu Benchmark ](https://www.cisecurity.org/cis-benchmarks/).
 
 This repo originated from work done by [MindPointGroup](https://github.com/MindPointGroup/RHEL7-CIS)
 
