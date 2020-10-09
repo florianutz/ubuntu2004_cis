@@ -4,7 +4,7 @@ Ubuntu 20.04 CIS STIG
 [![Build Status](https://travis-ci.com/florianutz/ubuntu2004_cis.svg?branch=main)](https://travis-ci.com/florianutz/ubuntu2004_cis)
 [![Ansible Role](https://img.shields.io/badge/role-florianutz.ubuntu2004--cis-blue.svg)](https://galaxy.ansible.com/florianutz/ubuntu2004_cis/)
 
-**This role is based on 18.04 migration. The tasks are correct in content, but have to be re-sorted to fit the 18.04 Benchmark. Contribution welcome.**
+**This role is based on 18.04 migration. The tasks are correct in content, but have to be re-sorted to fit the 20.04 Benchmark. Contribution welcome.**
 
 Configure Ubuntu 20.04 machine to be CIS compliant. Level 1 and 2 findings will be corrected by default.
 
