@@ -5,4 +5,4 @@
     ubuntu2004cis_skip_for_travis: true
     ubuntu2004cis_selinux_disable: true
   roles:
-    - role: Ubuntu2004-CIS
+    - role: ubuntu2004_cis
