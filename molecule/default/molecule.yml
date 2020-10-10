@@ -3,11 +3,9 @@ dependency:
   name: galaxy
 driver:
   name: docker
-#lint: |
-#  set -e
-  #yamllint .
-  #ansible-lint
-#  exit 0
+lint: |
+  set -e
+  ansible-lint
 platforms:
   - name: instance
     image: florianutz/docker-systemd:20.04
