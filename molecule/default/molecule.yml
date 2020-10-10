@@ -18,7 +18,7 @@ platforms:
       - /tmp
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-#    privileged: true
+    privileged: true
 #    command: /sbin/init
 provisioner:
   name: ansible
