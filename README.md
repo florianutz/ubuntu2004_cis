@@ -10,6 +10,8 @@ Configure Ubuntu 20.04 machine to be CIS compliant. Level 1 and 2 findings will 
 
 This role **will make changes to the system** that could break things. This is not an auditing tool but rather a remediation tool to be used after an audit has been conducted.
 
+Based on [CIS Ubuntu Linux 20.04 LTS Benchmark - v1.0.0 - 07-21-2020 ](https://www.cisecurity.org/cis-benchmarks/).
+
 ## IMPORTANT INSTALL STEP
 
 If you want to install this via the `ansible-galaxy` command you'll need to run it like this:
@@ -23,10 +25,6 @@ With this in the file requirements.yml:
 ```
 
 **You can find an example playbook below. please read the documentation anyway and check the settings for your case. For example, the default settings uninstall the X server!**
-
-Based on [CIS Ubuntu Benchmark ](https://www.cisecurity.org/cis-benchmarks/).
-
-This repo originated from work done by [MindPointGroup](https://github.com/MindPointGroup/RHEL7-CIS)
 
 ## Requirements
 
@@ -226,3 +224,8 @@ Some examples of using tags:
 
 
 MIT
+
+
+## other
+
+This repo originated from work done by [MindPointGroup](https://github.com/MindPointGroup/RHEL7-CIS)
