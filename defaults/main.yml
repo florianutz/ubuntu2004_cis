@@ -216,6 +216,7 @@ ubuntu2004cis_rule_5_1_5: true
 ubuntu2004cis_rule_5_1_6: true
 ubuntu2004cis_rule_5_1_7: true
 ubuntu2004cis_rule_5_1_8: true
+ubuntu2004cis_rule_5_1_9: true
 ubuntu2004cis_rule_5_2_1: true
 ubuntu2004cis_rule_5_2_2: true
 ubuntu2004cis_rule_5_2_3: true
@@ -238,7 +239,6 @@ ubuntu2004cis_rule_5_2_19: true
 ubuntu2004cis_rule_5_2_20: true
 ubuntu2004cis_rule_5_2_21: true
 ubuntu2004cis_rule_5_2_22: true
-ubuntu2004cis_rule_5_2_23: true
 ubuntu2004cis_rule_5_3_1: true
 ubuntu2004cis_rule_5_3_2: true
 ubuntu2004cis_rule_5_3_3: true
@@ -282,13 +282,11 @@ ubuntu2004cis_rule_6_2_9: true
 ubuntu2004cis_rule_6_2_10: true
 ubuntu2004cis_rule_6_2_11: true
 ubuntu2004cis_rule_6_2_12: true
+ubuntu2004cis_rule_6_2_13: true
 ubuntu2004cis_rule_6_2_14: true
 ubuntu2004cis_rule_6_2_15: true
 ubuntu2004cis_rule_6_2_16: true
 ubuntu2004cis_rule_6_2_17: true
-ubuntu2004cis_rule_6_2_18: true
-ubuntu2004cis_rule_6_2_19: true
-ubuntu2004cis_rule_6_2_20: true
 
 # Service configuration booleans set true to keep service
 ubuntu2004cis_avahi_server: false
