@@ -21,7 +21,7 @@ If you want to install this via the `ansible-galaxy` command you'll need to run 
 With this in the file requirements.yml:
 
 ```
-- src: https://github.com/florianutz/Ubuntu2004-CIS.git
+- src: https://github.com/florianutz/ubuntu2004_cis.git
 ```
 
 **You can find an example playbook below. please read the documentation anyway and check the settings for your case. For example, the default settings uninstall the X server!**
@@ -34,11 +34,11 @@ With this in the file requirements.yml:
   become: yes
 
   roles:
-    - Ubuntu2004-CIS
+    - ubuntu2004_cis
 ```
 
 To run the tasks in this repository, first create this file one level above the repository
-(i.e. the playbook .yml and the directory `Ubuntu2004-CIS` should be next to each other),
+(i.e. the playbook .yml and the directory `ubuntu2004_cis` should be next to each other),
 then review the file `defaults/main.yml` and disable any rule/section you do not wish to execute.
 
 Assuming you named the file `site.yml`, run it with:
