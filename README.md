@@ -26,6 +26,26 @@ With this in the file requirements.yml:
 
 **You can find an example playbook below. please read the documentation anyway and check the settings for your case. For example, the default settings uninstall the X server!**
 
+## Example Playbook
+
+```
+- name: Harden Server
+  hosts: servers
+  become: yes
+
+  roles:
+    - Ubuntu2004-CIS
+```
+
+To run the tasks in this repository, first create this file one level above the repository
+(i.e. the playbook .yml and the directory `Ubuntu2004-CIS` should be next to each other),
+then review the file `defaults/main.yml` and disable any rule/section you do not wish to execute.
+
+Assuming you named the file `site.yml`, run it with:
+```bash
+ansible-playbook site.yml
+```
+
 ## Requirements
 
 You should carefully read through the tasks to make sure these changes will not break your systems before running this playbook.
@@ -189,25 +209,6 @@ ubuntu2004cis_pwquality:
 
 Developed and testes with Ansible 2.10
 
-## Example Playbook
-
-```
-- name: Harden Server
-  hosts: servers
-  become: yes
-
-  roles:
-    - Ubuntu2004-CIS
-```
-
-To run the tasks in this repository, first create this file one level above the repository
-(i.e. the playbook .yml and the directory `Ubuntu2004-CIS` should be next to each other),
-then review the file `defaults/main.yml` and disable any rule/section you do not wish to execute.
-
-Assuming you named the file `site.yml`, run it with:
-```bash
-ansible-playbook site.yml
-```
 
 ## Tags
 
