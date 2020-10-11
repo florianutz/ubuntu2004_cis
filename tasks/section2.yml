@@ -774,7 +774,6 @@
       - rule_2.3.6
 
 - name: "NOTSCORED | 2.4 | PATCH | Ensure nonessential services are removed or masked"
-  command: /bin/true
   changed_when: false
   debug:
       msg: >
