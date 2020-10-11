@@ -118,6 +118,8 @@ ubuntu2004cis_rule_2_3_2: true
 ubuntu2004cis_rule_2_3_3: true
 ubuntu2004cis_rule_2_3_4: true
 ubuntu2004cis_rule_2_3_5: true
+ubuntu2004cis_rule_2_3_6: true
+ubuntu2004cis_rule_2_4: true
 
 # Section 3 rules
 ubuntu2004cis_rule_3_1_1: true
@@ -359,6 +361,7 @@ ubuntu2004cis_telnet_required: false
 ubuntu2004cis_talk_required: false
 ubuntu2004cis_rsh_required: false
 ubuntu2004cis_ypbind_required: false
+ubuntu2004cis_rpc_required: false
 
 # Time Synchronization
 ubuntu2004cis_time_synchronization: chrony

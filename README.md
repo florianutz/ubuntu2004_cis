@@ -143,6 +143,7 @@ ubuntu2004cis_telnet_required: false
 ubuntu2004cis_talk_required: false  
 ubuntu2004cis_rsh_required: false
 ubuntu2004cis_ypbind_required: false
+ubuntu2004cis_rpc_required: false
 ```
 
 ### Time Synchronization
