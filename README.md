@@ -22,7 +22,7 @@ With this in the file requirements.yml:
 - src: https://github.com/florianutz/Ubuntu2004-CIS.git
 ```
 
-[](# Example Playbook)
+**You can find an example playbook below. please read the documentation anyway and check the settings for your case. For example, the default settings uninstall the X server!**
 
 Based on [CIS Ubuntu Benchmark ](https://www.cisecurity.org/cis-benchmarks/).
 
