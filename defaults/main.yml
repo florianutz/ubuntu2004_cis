@@ -51,6 +51,7 @@ ubuntu2004cis_rule_1_1_20: true
 ubuntu2004cis_rule_1_1_21: true
 ubuntu2004cis_rule_1_1_22: true
 ubuntu2004cis_rule_1_1_23: true
+ubuntu2004cis_rule_1_1_24: true
 ubuntu2004cis_rule_1_2_1: true
 ubuntu2004cis_rule_1_2_2: true
 ubuntu2004cis_rule_1_3_1: true
@@ -77,8 +78,8 @@ ubuntu2004cis_rule_1_8_1_3: true
 ubuntu2004cis_rule_1_8_1_4: true
 ubuntu2004cis_rule_1_8_1_5: true
 ubuntu2004cis_rule_1_8_1_6: true
-ubuntu2004cis_rule_1_8_2: true
 ubuntu2004cis_rule_1_9: true
+ubuntu2004cis_rule_1_10: true
 
 # Section 2 rules
 ubuntu2004cis_rule_2_1_1: true
