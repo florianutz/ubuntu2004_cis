@@ -24,9 +24,9 @@ With this in the file requirements.yml:
 - src: https://github.com/florianutz/ubuntu2004_cis.git
 ```
 
-**You can find an example playbook below. please read the documentation anyway and check the settings for your case. For example, the default settings uninstall the X server!**
-
 ## Example Playbook
+
+**You can find an example playbook below. please read the documentation anyway and check the settings for your case. For example, the default settings uninstall the X server!**
 
 ```
 - name: Harden Server
