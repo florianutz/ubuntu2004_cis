@@ -22,17 +22,18 @@ With this in the file requirements.yml:
 - src: https://github.com/florianutz/Ubuntu2004-CIS.git
 ```
 
+[](# Example Playbook)
+
 Based on [CIS Ubuntu Benchmark ](https://www.cisecurity.org/cis-benchmarks/).
 
 This repo originated from work done by [MindPointGroup](https://github.com/MindPointGroup/RHEL7-CIS)
 
-Requirements
-------------
+## Requirements
 
 You should carefully read through the tasks to make sure these changes will not break your systems before running this playbook.
 
-Role Variables
---------------
+## Role Variables
+
 There are many role variables defined in defaults/main.yml. This list shows the most important.
 
 **ubuntu2004cis_notauto**: Run CIS checks that we typically do NOT want to automate due to the high probability of breaking the system (Default: false)
@@ -49,11 +50,11 @@ There are many role variables defined in defaults/main.yml. This list shows the 
 
 **ubuntu2004cis_section6**: CIS - System Maintenance settings (Section 6) (Default: true)  
 
-##### Disable all selinux functions
+### Disable all selinux functions
 `ubuntu2004cis_selinux_disable: false`
 
-##### Service variables:
-###### These control whether a server should or should not be allowed to continue to run these services
+### Service variables
+####These control whether a server should or should not be allowed to continue to run these services
 
 ```
 ubuntu2004cis_avahi_server: false  
@@ -84,22 +85,22 @@ ubuntu2004cis_squid: false
 ubuntu2004cis_net_snmp: false  
 ```  
 
-##### Designate server as a Mail server
+### Designate server as a Mail server
 `ubuntu2004cis_is_mail_server: false`
 
 
-##### System network parameters (host only OR host and router)
+####System network parameters (host only OR host and router)
 `ubuntu2004cis_is_router: false`  
 
 
-##### IPv6 required
+####IPv6 required
 `ubuntu2004cis_ipv6_required: true`  
 
 
-##### AIDE
+### AIDE
 `ubuntu2004cis_config_aide: true`
 
-###### AIDE cron settings
+#### AIDE cron settings
 ```
 ubuntu2004cis_aide_cron:
   cron_user: root
@@ -113,11 +114,11 @@ ubuntu2004cis_aide_cron:
 ```
 
 
-##### Set to 'true' if X Windows is needed in your environment
+### Set to 'true' if X Windows is needed in your environment
 `ubuntu2004cis_xwindows_required: no`
 
 
-##### Client application requirements
+### Client application requirements
 ```
 ubuntu2004cis_openldap_clients_required: false
 ubuntu2004cis_telnet_required: false
@@ -126,7 +127,7 @@ ubuntu2004cis_rsh_required: false
 ubuntu2004cis_ypbind_required: false
 ```
 
-##### Time Synchronization
+### Time Synchronization
 ```
 ubuntu2004cis_time_synchronization: chrony
 ubuntu2004cis_time_Synchronization: ntp
@@ -142,12 +143,12 @@ ubuntu2004cis_time_synchronization_servers:
     config: "minpoll 8"
 
 ```
-##### - name: "SCORED | 1.1.5 | PATCH | Ensure noexec option set on /tmp partition"
+### - name: "SCORED | 1.1.5 | PATCH | Ensure noexec option set on /tmp partition"
 It is not implemented, noexec for /tmp will disrupt apt. /tmp contains executable scripts during package installation
 ```
 
 ```  
-##### 1.5.3 | PATCH | Ensure authentication required for single user mode
+### 1.5.3 | PATCH | Ensure authentication required for single user mode
 It is disabled by default as it is setting random password for root. To enable it set:
 ```yaml
 ubuntu2004cis_rule_1_5_3: true
@@ -157,7 +158,7 @@ To use other than random password:
 ubuntu2004cis_root_password: 'new password'
 ```
 
-##### 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
+### 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
 ```
 ubuntu2004cis_host_allow:
   - "10.0.0.0/255.0.0.0"  
@@ -170,7 +171,7 @@ ubuntu2004cis_firewall: firewalld
 ubuntu2004cis_firewall: iptables
 ```
 
-##### 5.3.1 | PATCH | Ensure password creation requirements are configured
+### 5.3.1 | PATCH | Ensure password creation requirements are configured
 ```
 ubuntu2004cis_pwquality:
   - key: 'minlen'
@@ -186,13 +187,11 @@ ubuntu2004cis_pwquality:
 ```
 
 
-Dependencies
-------------
+## Dependencies
 
-Ansible >= 2.4 and <= 2.7 (2.8 is not yet supported)
+Developed and testes with Ansible 2.10
 
-Example Playbook
--------------------------
+## Example Playbook
 
 ```
 - name: Harden Server
@@ -212,8 +211,8 @@ Assuming you named the file `site.yml`, run it with:
 ansible-playbook site.yml
 ```
 
-Tags
-----
+## Tags
+
 Many tags are available for precise control of what is and is not changed.
 
 Some examples of using tags:
@@ -223,7 +222,7 @@ Some examples of using tags:
     ansible-playbook site.yml --tags="patch"
 ```
 
-License
--------
+## License
+
 
 MIT
