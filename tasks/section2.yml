@@ -759,3 +759,39 @@
       - scored
       - patch
       - rule_2.3.5
+
+- name: "SCORED | 2.3.6 | PATCH | Ensure RPC is not installed"
+  apt:
+      name: rpcbind
+      state: absent
+  when:
+      - not ubuntu2004cis_rpc_required
+      - ubuntu2004cis_rule_2_3_6
+  tags:
+      - level1
+      - scored
+      - patch
+      - rule_2.3.6
+
+- name: "NOTSCORED | 2.4 | PATCH | Ensure nonessential services are removed or masked"
+  command: /bin/true
+  changed_when: false
+  debug:
+      msg: >
+          Run the following command:
+          # lsof -i -P -n | grep -v "(ESTABLISHED)"
+          Review the output to ensure that all services listed are required on the system. If a listed
+          service is not required, remove the package containing the service. If the package
+          containing a non-essential service is required, stop and mask the non-essential service.
+          Run the following command to remove the package containing the service:
+          # apt purge <package_name>
+          Run the following command to stop and mask the service:
+          # systemctl --now mask <service_name>
+  when:
+      - not ubuntu2004cis_rpc_required
+      - ubuntu2004cis_rule_2_4
+  tags:
+      - level1
+      - notscored
+      - patch
+      - rule_2.4
