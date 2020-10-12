@@ -39,7 +39,6 @@
       - patch
       - rule_6.1.3
 
-
 - name: "SCORED | 6.1.4 | PATCH | Ensure permissions on /etc/shadow are configured"
   file:
       dest: /etc/shadow
@@ -198,12 +197,13 @@
       - patch
       - rule_6.2.1
 
-- name: "SCORED | 6.2.2 | PATCH | Ensure no legacy '+' entries exist in /etc/passwd"
-  lineinfile:
-      regexp: '^\+'
-      state: absent
-      path: /etc/passwd
+- name: "SCORED | 6.2.2 | PATCH | Ensure root is the only UID 0 account"
+  command: passwd -l {{ item }}
+  changed_when: false
+  failed_when: false
+  with_items: "{{ uid_zero_accounts_except_root.stdout_lines }}"
   when:
+      - uid_zero_accounts_except_root.rc
       - ubuntu2004cis_rule_6_2_2
   tags:
       - level1
@@ -211,59 +211,19 @@
       - patch
       - rule_6.2.2
 
-- name: "SCORED | 6.2.3 | PATCH | Ensure no legacy '+' entries exist in /etc/shadow"
-  lineinfile:
-      regexp: '^\+'
-      state: absent
-      path: /etc/shadow
-  when:
-      - ubuntu2004cis_rule_6_2_3
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_6.2.3
-
-- name: "SCORED | 6.2.4 | PATCH | Ensure no legacy '+' entries exist in /etc/group"
-  lineinfile:
-      regexp: '^\+'
-      state: absent
-      path: /etc/group
-  when:
-      - ubuntu2004cis_rule_6_2_4
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_6.2.4
-
-- name: "SCORED | 6.2.5 | PATCH | Ensure root is the only UID 0 account"
-  command: passwd -l {{ item }}
-  changed_when: false
-  failed_when: false
-  with_items: "{{ uid_zero_accounts_except_root.stdout_lines }}"
-  when:
-      - uid_zero_accounts_except_root.rc
-      - ubuntu2004cis_rule_6_2_5
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_6.2.5
-
-- name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity"
+- name: "SCORED | 6.2.3 | PATCH | Ensure root PATH Integrity"
   block:
-      - name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity (unimplemented)"
+      - name: "SCORED | 6.2.3 | PATCH | Ensure root PATH Integrity (unimplemented)"
         command: /bin/true
         changed_when: false
         tags:
             - level1
             - scored
             - patch
-            - rule_6.2.6
+            - rule_6.2.3
             - notimplemented
 
-      - name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity (collect paths)"
+      - name: "SCORED | 6.2.3 | PATCH | Ensure root PATH Integrity (collect paths)"
         shell: |
           set -o pipefail;
           sudopath=($(grep secure_path /etc/sudoers | cut -f2 -d= |cut -f2 -d\"))
@@ -284,9 +244,9 @@
             - level1
             - scored
             - patch
-            - rule_6.2.6
+            - rule_6.2.3
 
-      - name: "SCORED | 6.2.6 | PATCH | Ensure root PATH Integrity (fix paths)"
+      - name: "SCORED | 6.2.3 | PATCH | Ensure root PATH Integrity (fix paths)"
         lineinfile:
             dest: /etc/sudoers
             regexp: "(.*secure_path=).*"
@@ -298,11 +258,50 @@
             - level1
             - scored
             - patch
-            - rule_6.2.6
+            - rule_6.2.3
+  when:
+      - ubuntu2004cis_rule_6_2_3
+
+- name: "SCORED | 6.2.4 | PATCH | Ensure all users' home directories exist"
+  command: /bin/true
+  changed_when: false
+  when:
+      - ubuntu2004cis_rule_6_2_4
+  tags:
+      - level1
+      - scored
+      - patch
+      - rule_6.2.4
+      - notimplemented
+
+- name: "SCORED | 6.2.5 | PATCH | Ensure users' home directories permissions are 750 or more restrictive"
+  shell: |
+      for dir in {{ homes_with_perms.stdout }};
+      do
+        chmod g-w,o-rwx $dir;
+      done
+  when:
+      - ubuntu2004cis_rule_6_2_5
+      - homes_with_perms.stdout | length > 0
+  tags:
+      - level1
+      - scored
+      - patch
+      - rule_6.2.5
+
+- name: "SCORED | 6.2.6 | PATCH | Ensure users own their home directories"
+  command: /bin/true
+  changed_when: false
   when:
       - ubuntu2004cis_rule_6_2_6
+  tags:
+      - level1
+      - scored
+      - patch
+      - rule_6.2.6
+      - notimplemented
 
-- name: "SCORED | 6.2.7 | PATCH | Ensure all users' home directories exist"
+- name: "SCORED | 6.2.7 | PATCH | Ensure users' dot files are not group or world writable"
   command: /bin/true
   changed_when: false
   when:
@@ -314,24 +313,24 @@
       - rule_6.2.7
       - notimplemented
 
-- name: "SCORED | 6.2.8 | PATCH | Ensure users' home directories permissions are 750 or more restrictive"
-  shell: |
-      for dir in {{ homes_with_perms.stdout }};
-      do
-        chmod g-w,o-rwx $dir;
-      done
+- name: "SCORED | 6.2.8 | PATCH | Ensure no users have .forward files"
+  file:
+      state: absent
+      dest: "~{{ item }}/.forward"
+  with_items: "{{ users.stdout_lines }}"
   when:
       - ubuntu2004cis_rule_6_2_8
-      - homes_with_perms.stdout | length > 0
   tags:
       - level1
       - scored
       - patch
       - rule_6.2.8
 
-- name: "SCORED | 6.2.9 | PATCH | Ensure users own their home directories"
-  command: /bin/true
-  changed_when: false
+- name: "SCORED | 6.2.9 | PATCH | Ensure no users have .netrc files"
+  file:
+      state: absent
+      dest: "~{{ item }}/.netrc"
+  with_items: "{{ users.stdout_lines }}"
   when:
       - ubuntu2004cis_rule_6_2_9
   tags:
@@ -339,9 +338,8 @@
       - scored
       - patch
       - rule_6.2.9
-      - notimplemented
 
-- name: "SCORED | 6.2.10 | PATCH | Ensure users' dot files are not group or world writable"
+- name: "SCORED | 6.2.10 | PATCH | Ensure users' .netrc Files are not group or world accessible"
   command: /bin/true
   changed_when: false
   when:
@@ -351,12 +349,11 @@
       - scored
       - patch
       - rule_6.2.10
-      - notimplemented
 
-- name: "SCORED | 6.2.11 | PATCH | Ensure no users have .forward files"
+- name: "SCORED | 6.2.11 | PATCH | Ensure no users have .rhosts files"
   file:
       state: absent
-      dest: "~{{ item }}/.forward"
+      dest: "~{{ item }}/.rhosts"
   with_items: "{{ users.stdout_lines }}"
   when:
       - ubuntu2004cis_rule_6_2_11
@@ -366,11 +363,9 @@
       - patch
       - rule_6.2.11
 
-- name: "SCORED | 6.2.12 | PATCH | Ensure no users have .netrc files"
-  file:
-      state: absent
-      dest: "~{{ item }}/.netrc"
-  with_items: "{{ users.stdout_lines }}"
+- name: "SCORED | 6.2.12 | PATCH | Ensure all groups in /etc/passwd exist in /etc/group"
+  command: /bin/true
+  changed_when: false
   when:
       - ubuntu2004cis_rule_6_2_12
   tags:
@@ -378,12 +373,23 @@
       - scored
       - patch
       - rule_6.2.12
+      - notimplemented
 
-- name: "SCORED | 6.2.14 | PATCH | Ensure no users have .rhosts files"
-  file:
-      state: absent
-      dest: "~{{ item }}/.rhosts"
-  with_items: "{{ users.stdout_lines }}"
+- name: "SCORED | 6.2.13 | PATCH | Ensure no duplicate UIDs exist"
+  command: /bin/true
+  changed_when: false
+  when:
+      - ubuntu2004cis_rule_6_2_13
+  tags:
+      - level1
+      - scored
+      - patch
+      - rule_6.2.13
+      - notimplemented
+
+- name: "SCORED | 6.2.14 | PATCH | Ensure no duplicate GIDs exist"
+  command: /bin/true
+  changed_when: false
   when:
       - ubuntu2004cis_rule_6_2_14
   tags:
@@ -391,8 +397,9 @@
       - scored
       - patch
       - rule_6.2.14
+      - notimplemented
 
-- name: "SCORED | 6.2.15 | PATCH | Ensure all groups in /etc/passwd exist in /etc/group"
+- name: "SCORED | 6.2.15 | PATCH | Ensure no duplicate user names exist"
   command: /bin/true
   changed_when: false
   when:
@@ -404,7 +411,7 @@
       - rule_6.2.15
       - notimplemented
 
-- name: "SCORED | 6.2.16 | PATCH | Ensure no duplicate UIDs exist"
+- name: "SCORED | 6.2.16 | PATCH | Ensure no duplicate group names exist"
   command: /bin/true
   changed_when: false
   when:
@@ -416,7 +423,7 @@
       - rule_6.2.16
       - notimplemented
 
-- name: "SCORED | 6.2.17 | PATCH | Ensure no duplicate GIDs exist"
+- name: "SCORED | 6.2.17 | PATCH | Ensure shadow group is empty"
   command: /bin/true
   changed_when: false
   when:
@@ -426,40 +433,4 @@
       - scored
       - patch
       - rule_6.2.17
-      - notimplemented
-
-- name: "SCORED | 6.2.18 | PATCH | Ensure no duplicate user names exist"
-  command: /bin/true
-  changed_when: false
-  when:
-      - ubuntu2004cis_rule_6_2_18
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_6.2.18
-      - notimplemented
-
-- name: "SCORED | 6.2.19 | PATCH | Ensure no duplicate group names exist"
-  command: /bin/true
-  changed_when: false
-  when:
-      - ubuntu2004cis_rule_6_2_19
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_6.2.19
-      - notimplemented
-
-- name: "SCORED | 6.2.20 | PATCH | Ensure shadow group is empty"
-  command: /bin/true
-  changed_when: false
-  when:
-      - ubuntu2004cis_rule_6_2_20
-  tags:
-      - level1
-      - scored
-      - patch
-      - rule_6.2.20
       - notimplemented
