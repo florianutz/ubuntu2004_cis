@@ -327,7 +327,6 @@ ubuntu2004cis_set_boot_pass: false
 
 # System network parameters (host only OR host and router)
 ubuntu2004cis_is_router: false
-ubuntu2004cis_ipv6_required: false
 
 # IPv6 required
 ubuntu2004cis_ipv6_required: true
