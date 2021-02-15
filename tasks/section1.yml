@@ -318,6 +318,8 @@
   register: var_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_10
   tags:
@@ -898,11 +900,10 @@
 
 - name: "SCORED | 1.7.1.1 | PATCH | Ensure AppArmor is installed"
   apt:
-      name: '{{ item }}'
+      name: 
+          - apparmor
+          - apparmor-utils
       state: present
-  with_items:
-      - apparmor
-      - apparmor-utils
   when:
       - ubuntu2004cis_rule_1_7_1_1
   tags:
