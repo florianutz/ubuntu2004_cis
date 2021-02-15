@@ -306,13 +306,6 @@ ubuntu2004cis_vsftpd_server: false
 ubuntu2004cis_named_server: false
 ubuntu2004cis_nfs_rpc_server: false
 ubuntu2004cis_is_mail_server: false
-ubuntu2004cis_bind: false
-ubuntu2004cis_vsftpd: false
-ubuntu2004cis_httpd: false
-ubuntu2004cis_dovecot: false
-ubuntu2004cis_samba: false
-ubuntu2004cis_squid: false
-ubuntu2004cis_net_snmp: false
 ubuntu2004cis_allow_autofs: false
 
 # xinetd required
