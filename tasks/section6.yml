@@ -349,6 +349,7 @@
       - scored
       - patch
       - rule_6.2.10
+      - notimplemented
 
 - name: "SCORED | 6.2.11 | PATCH | Ensure no users have .rhosts files"
   file:

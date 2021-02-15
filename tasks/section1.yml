@@ -532,6 +532,7 @@
       - notscored
       - patch
       - rule_1.2.1
+      - notimplemented
 
 - name: "NOTSCORED | 1.2.2 | PATCH | Ensure GPG keys are configured"
   command: /bin/true
@@ -689,7 +690,6 @@
       - grub
       - patch
       - rule_1.5.1
-      - notimplemented
 
 - name: "SCORED | 1.5.1 | PATCH | Ensure bootloader password is set - generate config"
   copy:
@@ -792,7 +792,6 @@
       - scored
       - patch
       - rule_1.5.3
-      - notimplemented
 
 - name: "SCORED | 1.6.1 | PATCH | Ensure XD/NX support is enabled"
   shell: |
