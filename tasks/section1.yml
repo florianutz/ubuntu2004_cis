@@ -334,6 +334,8 @@
   register: var_tmp_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_11
   tags:
@@ -370,6 +372,8 @@
   register: var_log_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_15
   tags:
@@ -384,6 +388,8 @@
   register: var_log_audit_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_16
   tags:
@@ -398,6 +404,8 @@
   register: home_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_17
   tags:
