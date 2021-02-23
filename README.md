@@ -228,13 +228,13 @@ Some examples of using tags:
  **1 Initial Setup**
   - 1.1 Filesystem Configuration
     - 1.1.1 Disable unused filesystems
-    - 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)
-    - 1.1.1.2 Ensure mounting of freevxfs filesystems is disabled - (Automated)
-    - 1.1.1.3 Ensure mounting of jffs2 filesystems is disabled (Automated)
-    - 1.1.1.4 Ensure mounting of hfs filesystems is disabled (Automated)
-    - 1.1.1.5 Ensure mounting of hfsplus filesystems is disabled - (Automated)
-    - 1.1.1.6 Ensure mounting of udf filesystems is disabled (Automated)
-    - 1.1.1.7 Ensure mounting of FAT filesystems is limited (Manual)
+      - 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)
+      - 1.1.1.2 Ensure mounting of freevxfs filesystems is disabled - (Automated)
+      - 1.1.1.3 Ensure mounting of jffs2 filesystems is disabled (Automated)
+      - 1.1.1.4 Ensure mounting of hfs filesystems is disabled (Automated)
+      - 1.1.1.5 Ensure mounting of hfsplus filesystems is disabled - (Automated)
+      - 1.1.1.6 Ensure mounting of udf filesystems is disabled (Automated)
+      - 1.1.1.7 Ensure mounting of FAT filesystems is limited (Manual)
   - 1.1.2 Ensure /tmp is configured (Automated)
   - 1.1.3 Ensure nodev option set on /tmp partition (Automated)
   - 1.1.4 Ensure nosuid option set on /tmp partition (Automated)
@@ -421,7 +421,6 @@ Some examples of using tags:
     - 4.1.15 Ensure system administrator command executions (sudo) are - collected (Automated)
     - 4.1.16 Ensure kernel module loading and unloading is collected - (Automated)
     - 4.1.17 Ensure the audit configuration is immutable (Automated)
-
   - 4.2 Configure Logging
     - 4.2.1 Configure rsyslog
       - 4.2.1.1 Ensure rsyslog is installed (Automated)
@@ -440,63 +439,61 @@ Some examples of using tags:
 
 **5 Access, Authentication and Authorization**
   - 5.1 Configure time-based job schedulers
-  - 5.1.1 Ensure cron daemon is enabled and running (Automated)
-  - 5.1.2 Ensure permissions on /etc/crontab are configured (Automated)
-  - 5.1.3 Ensure permissions on /etc/cron.hourly are configured - (Automated)
-  - 5.1.4 Ensure permissions on /etc/cron.daily are configured - (Automated)
-  - 5.1.5 Ensure permissions on /etc/cron.weekly are configured - (Automated)
-  - 5.1.6 Ensure permissions on /etc/cron.monthly are configured - (Automated)
-  - 5.1.7 Ensure permissions on /etc/cron.d are configured (Automated)
-  - 5.1.8 Ensure cron is restricted to authorized users (Automated)
-  - 5.1.9 Ensure at is restricted to authorized users (Automated)
+    - 5.1.1 Ensure cron daemon is enabled and running (Automated)
+    - 5.1.2 Ensure permissions on /etc/crontab are configured (Automated)
+    - 5.1.3 Ensure permissions on /etc/cron.hourly are configured - (Automated)
+    - 5.1.4 Ensure permissions on /etc/cron.daily are configured - (Automated)
+    - 5.1.5 Ensure permissions on /etc/cron.weekly are configured - (Automated)
+    - 5.1.6 Ensure permissions on /etc/cron.monthly are configured - (Automated)
+    - 5.1.7 Ensure permissions on /etc/cron.d are configured (Automated)
+    - 5.1.8 Ensure cron is restricted to authorized users (Automated)
+    - 5.1.9 Ensure at is restricted to authorized users (Automated)
 
-**5.2 Configure SSH Server**
-  - 5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured - (Automated)
-  - 5.2.2 Ensure permissions on SSH private host key files are - configured (Automated)
-  - 5.2.3 Ensure permissions on SSH public host key files are configured - (Automated)
-  - 5.2.4 Ensure SSH LogLevel is appropriate (Automated)
-  - 5.2.5 Ensure SSH X11 forwarding is disabled (Automated)
-  - 5.2.6 Ensure SSH MaxAuthTries is set to 4 or less (Automated)
-  - 5.2.7 Ensure SSH IgnoreRhosts is enabled (Automated)
-  - 5.2.8 Ensure SSH HostbasedAuthentication is disabled (Automated)
-  - 5.2.9 Ensure SSH root login is disabled (Automated)
-  - 5.2.10 Ensure SSH PermitEmptyPasswords is disabled (Automated)
-  - 5.2.11 Ensure SSH PermitUserEnvironment is disabled (Automated)
-  - 5.2.12 Ensure only strong Ciphers are used (Automated)
-  - 5.2.13 Ensure only strong MAC algorithms are used (Automated)
-  - 5.2.14 Ensure only strong Key Exchange algorithms are used - (Automated)
-  - 5.2.15 Ensure SSH Idle Timeout Interval is configured (Automated)
-  - 5.2.16 Ensure SSH LoginGraceTime is set to one minute or less - (Automated)
-  - 5.2.17 Ensure SSH access is limited (Automated)
-  - 5.2.18 Ensure SSH warning banner is configured (Automated)
-  - 5.2.19 Ensure SSH PAM is enabled (Automated)
-  - 5.2.20 Ensure SSH AllowTcpForwarding is disabled (Automated)
-  - 5.2.21 Ensure SSH MaxStartups is configured (Automated)
-  - 5.2.22 Ensure SSH MaxSessions is limited (Automated)
-
-**5.3 Configure PAM**
-  - 5.3.1 Ensure password creation requirements are configured - (Automated)
-  - 5.3.2 Ensure lockout for failed password attempts is configured - (Automated)
-  - 5.3.3 Ensure password reuse is limited (Automated)
-  - 5.3.4 Ensure password hashing algorithm is SHA-512 (Automated)
-
-**5.4 User Accounts and Environment**
-  - 5.4.1 Set Shadow Password Suite Parameters
-  - 5.4.1.1 Ensure password expiration is 365 days or less (Automated)
-  - 5.4.1.2 Ensure minimum days between password changes is configured - (Automated)
-  - 5.4.1.3 Ensure password expiration warning days is 7 or more - (Automated)
-  - 5.4.1.4 Ensure inactive password lock is 30 days or less (Automated)
-  - 5.4.1.5 Ensure all users last password change date is in the past - (Automated)
-  - 5.4.2 Ensure system accounts are secured (Automated)
-  - 5.4.3 Ensure default group for the root account is GID 0 (Automated)
-  - 5.4.4 Ensure default user umask is 027 or more restrictive - (Automated)
-  - 5.4.5 Ensure default user shell timeout is 900 seconds or less - (Automated)
-  - ~~5.5 Ensure root login is restricted to system console (Manual)~~
-  - 5.6 Ensure access to the su command is restricted (Automated)
+  - 5.2 Configure SSH Server
+    - 5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured - (Automated)
+    - 5.2.2 Ensure permissions on SSH private host key files are - configured (Automated)
+    - 5.2.3 Ensure permissions on SSH public host key files are configured - (Automated)
+    - 5.2.4 Ensure SSH LogLevel is appropriate (Automated)
+    - 5.2.5 Ensure SSH X11 forwarding is disabled (Automated)
+    - 5.2.6 Ensure SSH MaxAuthTries is set to 4 or less (Automated)
+    - 5.2.7 Ensure SSH IgnoreRhosts is enabled (Automated)
+    - 5.2.8 Ensure SSH HostbasedAuthentication is disabled (Automated)
+    - 5.2.9 Ensure SSH root login is disabled (Automated)
+    - 5.2.10 Ensure SSH PermitEmptyPasswords is disabled (Automated)
+    - 5.2.11 Ensure SSH PermitUserEnvironment is disabled (Automated)
+    - 5.2.12 Ensure only strong Ciphers are used (Automated)
+    - 5.2.13 Ensure only strong MAC algorithms are used (Automated)
+    - 5.2.14 Ensure only strong Key Exchange algorithms are used - (Automated)
+    - 5.2.15 Ensure SSH Idle Timeout Interval is configured (Automated)
+    - 5.2.16 Ensure SSH LoginGraceTime is set to one minute or less - (Automated)
+    - 5.2.17 Ensure SSH access is limited (Automated)
+    - 5.2.18 Ensure SSH warning banner is configured (Automated)
+    - 5.2.19 Ensure SSH PAM is enabled (Automated)
+    - 5.2.20 Ensure SSH AllowTcpForwarding is disabled (Automated)
+    - 5.2.21 Ensure SSH MaxStartups is configured (Automated)
+    - 5.2.22 Ensure SSH MaxSessions is limited (Automated)
+  - 5.3 Configure PAM
+    - 5.3.1 Ensure password creation requirements are configured - (Automated)
+    - 5.3.2 Ensure lockout for failed password attempts is configured - (Automated)
+    - 5.3.3 Ensure password reuse is limited (Automated)
+    - 5.3.4 Ensure password hashing algorithm is SHA-512 (Automated)
+  - 5.4 User Accounts and Environment
+    - 5.4.1 Set Shadow Password Suite Parameters
+      - 5.4.1.1 Ensure password expiration is 365 days or less (Automated)
+      - 5.4.1.2 Ensure minimum days between password changes is configured - (Automated)
+      - 5.4.1.3 Ensure password expiration warning days is 7 or more - (Automated)
+      - 5.4.1.4 Ensure inactive password lock is 30 days or less (Automated)
+      - 5.4.1.5 Ensure all users last password change date is in the past - (Automated)
+    - 5.4.2 Ensure system accounts are secured (Automated)
+    - 5.4.3 Ensure default group for the root account is GID 0 (Automated)
+    - 5.4.4 Ensure default user umask is 027 or more restrictive - (Automated)
+    - 5.4.5 Ensure default user shell timeout is 900 seconds or less - (Automated)
+    - ~~5.5 Ensure root login is restricted to system console (Manual)~~
+    - 5.6 Ensure access to the su command is restricted (Automated)
 
 **6 System Maintenance**
   - 6.1 System File Permissions
-  - ~~6.1.1 Audit system file permissions (Manual)~~
+    - ~~6.1.1 Audit system file permissions (Manual)~~
   - 6.1.2 Ensure permissions on /etc/passwd are configured (Automated)
   - 6.1.3 Ensure permissions on /etc/gshadow- are configured Automated)
   - 6.1.4 Ensure permissions on /etc/shadow are configured (Automated)
@@ -511,24 +508,24 @@ Some examples of using tags:
   - ~~6.1.13 Audit SUID executables (Manual)~~
   - ~~6.1.14 Audit SGID executables (Manual)~~
 
-**6.2 User and Group Settings**
-  - 6.2.1 Ensure password fields are not empty (Automated)
-  - 6.2.2 Ensure root is the only UID 0 account (Automated)
-  - 6.2.3 Ensure root PATH Integrity (Automated)
-  - ~~6.2.4 Ensure all users' home directories exist (Automated)~~
-  - 6.2.5 Ensure users' home directories permissions are 750 or more - restrictive (Automated)
-  - ~~6.2.6 Ensure users own their home directories (Automated)~~
-  - ~~6.2.7 Ensure users' dot files are not group or world writable - (Automated)~~
-  - 6.2.8 Ensure no users have .forward files (Automated)
-  - 6.2.9 Ensure no users have .netrc files (Automated)
-  - ~~6.2.10 Ensure users' .netrc Files are not group or world accessible - (Automated)~~
-  - 6.2.11 Ensure no users have .rhosts files (Automated)
-  - ~~6.2.12 Ensure aFor ll groups in /etc/passwd exist in /etc/group - (Automated)~~
-  - ~~6.2.13 Ensure no duplicate UIDs exist (Automated)~~
-  - ~~6.2.14 Ensure no duplicate GIDs exist (Automated)~~
-  - ~~6.2.15 Ensure no duplicate user names exist (Automated)~~
-  - ~~6.2.16 Ensure no duplicate group names exist (Automated)~~
-  - ~~6.2.17 Ensure shadow group is empty (Automated)~~
+  - 6.2 User and Group Settings
+    - 6.2.1 Ensure password fields are not empty (Automated)
+    - 6.2.2 Ensure root is the only UID 0 account (Automated)
+    - 6.2.3 Ensure root PATH Integrity (Automated)
+    - ~~6.2.4 Ensure all users' home directories exist (Automated)~~
+    - 6.2.5 Ensure users' home directories permissions are 750 or more - restrictive (Automated)
+    - ~~6.2.6 Ensure users own their home directories (Automated)~~
+    - ~~6.2.7 Ensure users' dot files are not group or world writable - (Automated)~~
+    - 6.2.8 Ensure no users have .forward files (Automated)
+    - 6.2.9 Ensure no users have .netrc files (Automated)
+    - ~~6.2.10 Ensure users' .netrc Files are not group or world accessible - (Automated)~~
+    - 6.2.11 Ensure no users have .rhosts files (Automated)
+    - ~~6.2.12 Ensure aFor ll groups in /etc/passwd exist in /etc/group - (Automated)~~
+    - ~~6.2.13 Ensure no duplicate UIDs exist (Automated)~~
+    - ~~6.2.14 Ensure no duplicate GIDs exist (Automated)~~
+    - ~~6.2.15 Ensure no duplicate user names exist (Automated)~~
+    - ~~6.2.16 Ensure no duplicate group names exist (Automated)~~
+    - ~~6.2.17 Ensure shadow group is empty (Automated)~~
 
 ## License
 
