@@ -295,10 +295,10 @@ Some examples of using tags:
   - **1.10 Ensure GDM is removed or login is configured (Automated)**
 
 **2 Services**
-  - 2.1 inetd Services
+  - **2.1 inetd Services**
     - 2.1.1 Ensure xinetd is not installed (Automated)
     - 2.1.2 Ensure openbsd-inetd is not installed (Automated)
-  - 2.2 Special Purpose Services
+  - **2.2 Special Purpose Services**
     - 2.2.1 Time Synchronization
       - 2.2.1.1 Ensure time synchronization is in use (Automated)
       - ~~2.2.1.2 Ensure systemd-timesyncd is configured (Manual)~~
@@ -320,23 +320,23 @@ Some examples of using tags:
     - 2.2.15 Ensure mail transfer agent is configured for local-only mode - (Automated)
     - 2.2.16 Ensure rsync service is not installed (Automated)
     - 2.2.17 Ensure NIS Server is not installed (Automated)
-  - 2.3 Service Clients
+  - **2.3 Service Clients**
     - 2.3.1 Ensure NIS Client is not installed (Automated)
     - 2.3.2 Ensure rsh client is not installed (Automated)
     - 2.3.3 Ensure talk client is not installed (Automated)
     - 2.3.4 Ensure telnet client is not installed (Automated)
     - 2.3.5 Ensure LDAP client is not installed (Automated)
     - 2.3.6 Ensure RPC is not installed (Automated)
-  - 2.4 Ensure nonessential services are removed or masked (Manual)
+  - **2.4 Ensure nonessential services are removed or masked (Manual)**
 
 **3 Network Configuration**
-  - 3.1 Disable unused network protocols and devices
+  - **3.1 Disable unused network protocols and devices**
     - 3.1.1 Disable IPv6 (Manual)
     - 3.1.2 Ensure wireless interfaces are disabled (Automated)
-  - 3.2 Network Parameters (Host-Only)
+  - **3.2 Network Parameters (Host-Only)**
     - 3.2.1 Ensure packet redirect sending is disabled (Automated)
     - 3.2.2 Ensure IP forwarding is disabled (Automated)
-  - 3.3 Network Parameters (Host and Router)
+  - **3.3 Network Parameters (Host and Router)**
     - 3.3.1 Ensure source-routed packets are not accepted (Automated)
     - 3.3.2 Ensure ICMP redirects are not accepted (Automated)
     - 3.3.3 Ensure secure ICMP redirects are not accepted (Automated)
@@ -346,12 +346,12 @@ Some examples of using tags:
     - 3.3.7 Ensure Reverse Path Filtering is enabled (Automated)
     - 3.3.8 Ensure TCP SYN Cookies is enabled (Automated)
     - 3.3.9 Ensure IPv6 router advertisements are not accepted (Automated)
-  - 3.4 Uncommon Network Protocols
+  - **3.4 Uncommon Network Protocols**
     - 3.4.1 Ensure DCCP is disabled (Automated)
     - 3.4.2 Ensure SCTP is disabled (Automated)
     - 3.4.3 Ensure RDS is disabled (Automated)
     - 3.4.4 Ensure TIPC is disabled (Automated)
-  - 3.5 Firewall Configuration
+  - **3.5 Firewall Configuration**
     - 3.5.1 Configure UncomplicatedFirewall
       - 3.5.1.1 Ensure Uncomplicated Firewall is installed (Automated)
       - 3.5.1.2 Ensure iptables-persistent is not installed (Automated)
@@ -385,7 +385,7 @@ Some examples of using tags:
       - ~~3.5.3.3.4 Ensure IPv6 firewall rules exist for all open ports - (Manual)~~
 
 **4 Logging and Auditing**
-  - 4.1 Configure System Accounting (auditd)
+  - **4.1 Configure System Accounting (auditd)**
     - 4.1.1 Ensure auditing is enabled
       - 4.1.1.1 Ensure auditd is installed (Automated)
       - 4.1.1.2 Ensure auditd service is enabled (Automated)
@@ -410,7 +410,7 @@ Some examples of using tags:
     - 4.1.15 Ensure system administrator command executions (sudo) are - collected (Automated)
     - 4.1.16 Ensure kernel module loading and unloading is collected - (Automated)
     - 4.1.17 Ensure the audit configuration is immutable (Automated)
-  - 4.2 Configure Logging
+  - **4.2 Configure Logging**
     - 4.2.1 Configure rsyslog
       - 4.2.1.1 Ensure rsyslog is installed (Automated)
       - 4.2.1.2 Ensure rsyslog Service is enabled (Automated)
@@ -423,11 +423,11 @@ Some examples of using tags:
       - 4.2.2.2 Ensure journald is configured to compress large log files - (Automated)
       - 4.2.2.3 Ensure journald is configured to write logfiles to - persistent disk (Automated)
     - 4.2.3 Ensure permissions on all logfiles are configured (Automated)
-  - 4.3 Ensure logrotate is configured (Manual)
-  - 4.4 Ensure logrotate assigns appropriate permissions (Automated)
+  - **4.3 Ensure logrotate is configured (Manual)**
+  - **4.4 Ensure logrotate assigns appropriate permissions (Automated)**
 
 **5 Access, Authentication and Authorization**
-  - 5.1 Configure time-based job schedulers
+  - **5.1 Configure time-based job schedulers**
     - 5.1.1 Ensure cron daemon is enabled and running (Automated)
     - 5.1.2 Ensure permissions on /etc/crontab are configured (Automated)
     - 5.1.3 Ensure permissions on /etc/cron.hourly are configured - (Automated)
@@ -437,7 +437,7 @@ Some examples of using tags:
     - 5.1.7 Ensure permissions on /etc/cron.d are configured (Automated)
     - 5.1.8 Ensure cron is restricted to authorized users (Automated)
     - 5.1.9 Ensure at is restricted to authorized users (Automated)
-  - 5.2 Configure SSH Server
+  - **5.2 Configure SSH Server**
     - 5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured - (Automated)
     - 5.2.2 Ensure permissions on SSH private host key files are - configured (Automated)
     - 5.2.3 Ensure permissions on SSH public host key files are configured - (Automated)
@@ -460,12 +460,12 @@ Some examples of using tags:
     - 5.2.20 Ensure SSH AllowTcpForwarding is disabled (Automated)
     - 5.2.21 Ensure SSH MaxStartups is configured (Automated)
     - 5.2.22 Ensure SSH MaxSessions is limited (Automated)
-  - 5.3 Configure PAM
+  - **5.3 Configure PAM**
     - 5.3.1 Ensure password creation requirements are configured - (Automated)
     - 5.3.2 Ensure lockout for failed password attempts is configured - (Automated)
     - 5.3.3 Ensure password reuse is limited (Automated)
     - 5.3.4 Ensure password hashing algorithm is SHA-512 (Automated)
-  - 5.4 User Accounts and Environment
+  - **5.4 User Accounts and Environment**
     - 5.4.1 Set Shadow Password Suite Parameters
       - 5.4.1.1 Ensure password expiration is 365 days or less (Automated)
       - 5.4.1.2 Ensure minimum days between password changes is configured - (Automated)
@@ -476,11 +476,11 @@ Some examples of using tags:
     - 5.4.3 Ensure default group for the root account is GID 0 (Automated)
     - 5.4.4 Ensure default user umask is 027 or more restrictive - (Automated)
     - 5.4.5 Ensure default user shell timeout is 900 seconds or less - (Automated)
-  - ~~5.5 Ensure root login is restricted to system console (Manual)~~
-  - 5.6 Ensure access to the su command is restricted (Automated)
+  - **~~5.5 Ensure root login is restricted to system console (Manual)~~**
+  - **5.6 Ensure access to the su command is restricted (Automated)**
 
 **6 System Maintenance**
-  - 6.1 System File Permissions
+  - **6.1 System File Permissions**
     - ~~6.1.1 Audit system file permissions (Manual)~~
     - 6.1.2 Ensure permissions on /etc/passwd are configured (Automated)
     - 6.1.3 Ensure permissions on /etc/gshadow- are configured Automated)
@@ -495,7 +495,7 @@ Some examples of using tags:
     - ~~6.1.12 Ensure no ungrouped files or directories exist (Automated)~~
     - ~~6.1.13 Audit SUID executables (Manual)~~
     - ~~6.1.14 Audit SGID executables (Manual)~~
-  - 6.2 User and Group Settings
+  - **6.2 User and Group Settings**
     - 6.2.1 Ensure password fields are not empty (Automated)
     - 6.2.2 Ensure root is the only UID 0 account (Automated)
     - 6.2.3 Ensure root PATH Integrity (Automated)
