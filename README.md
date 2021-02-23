@@ -225,7 +225,7 @@ Some examples of using tags:
 
 ## Table of Roles:
 
- **1 Initial Setup**
+**1 Initial Setup**
   - 1.1 Filesystem Configuration
     - 1.1.1 Disable unused filesystems
       - 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)
@@ -235,73 +235,62 @@ Some examples of using tags:
       - 1.1.1.5 Ensure mounting of hfsplus filesystems is disabled - (Automated)
       - 1.1.1.6 Ensure mounting of udf filesystems is disabled (Automated)
       - 1.1.1.7 Ensure mounting of FAT filesystems is limited (Manual)
-  - 1.1.2 Ensure /tmp is configured (Automated)
-  - 1.1.3 Ensure nodev option set on /tmp partition (Automated)
-  - 1.1.4 Ensure nosuid option set on /tmp partition (Automated)
-  - 1.1.5 Ensure noexec option set on /tmp partition (Automated)
-  - 1.1.6 Ensure /dev/shm is configured (Automated)
-  - 1.1.7 Ensure nodev option set on /dev/shm partition (Automated)
-  - 1.1.8 Ensure nosuid option set on /dev/shm partition (Automated)
-  - 1.1.9 Ensure noexec option set on /dev/shm partition (Automated)
-  - 1.1.10 Ensure separate partition exists for /var (Automated)
-  - 1.1.11 Ensure separate partition exists for /var/tmp (Automated)
-  - 1.1.12 Ensure nodev option set on /var/tmp partition (Automated)
-  - 1.1.13 Ensure nosuid option set on /var/tmp partition (Automated)
-  - 1.1.14 Ensure noexec option set on /var/tmp partition (Automated)
-  - 1.1.15 Ensure separate partition exists for /var/log (Automated)
-  - 1.1.16 Ensure separate partition exists for /var/log/audit - (Automated)
-  - 1.1.17 Ensure separate partition exists for /home (Automated)
-  - 1.1.18 Ensure nodev option set on /home partition (Automated)
-  - ~~1.1.19 Ensure nodev option set on removable media partitions (Manual)~~
-  - ~~1.1.20 Ensure nosuid option set on removable media partitions - (Manual)~~
-  - ~~1.1.21 Ensure noexec option set on removable media partitions - (Manual)~~
-  - 1.1.22 Ensure sticky bit is set on all world-writable directories - (Automated)
-  - 1.1.23 Disable Automounting (Automated)
-  - 1.1.24 Disable USB Storage (Automated)
-
-**1.2 Configure Software Updates**
-
-  - ~~1.2.1 Ensure package manager repositories are configured (Manual)~~
-  - ~~1.2.2 Ensure GPG keys are configured (Manual)~~
-
-**1.3 Configure sudo**
-
-  - 1.3.1 Ensure sudo is installed (Automated)
-  - 1.3.2 Ensure sudo commands use pty (Automated)
-  - 1.3.3 Ensure sudo log file exists (Automated)
-
-**1.4 Filesystem Integrity Checking**
-
-  - 1.4.1 Ensure AIDE is installed (Automated)
-  - 1.4.2 Ensure filesystem integrity is regularly checked (Automated)
-
-**1.5 Secure Boot Settings**
-
-  - 1.5.1 Ensure bootloader password is set (Automated)
-  - 1.5.2 Ensure permissions on bootloader config are configured - (Automated)
-  - 1.5.3 Ensure authentication required for single user mode (Automated)
-
-**1.6 Additional Process Hardening**
-  - 1.6.1 Ensure XD/NX support is enabled (Automated)
-  - 1.6.2 Ensure address space layout randomization (ASLR) is enabled - (Automated)
-  - 1.6.3 Ensure prelink is disabled (Automated)
-  - 1.6.4 Ensure core dumps are restricted (Automated)
-
-**1.7 Mandatory Access Control**
-  - 1.7.1 Configure AppArmor
-    - 1.7.1.1 Ensure AppArmor is installed (Automated)
-    - 1.7.1.2 Ensure AppArmor is enabled in the bootloader configuration - (Automated)
-    - ~~1.7.1.3 Ensure all AppArmor Profiles are in enforce or complain mode - (Automated)~~
-    - ~~1.7.1.4 Ensure all AppArmor Profiles are enforcing (Automated)~~
-
-**1.8 Warning Banners**
-  - 1.8.1 Command Line Warning Banners
-    - 1.8.1.1 Ensure message of the day is configured properly (Automated)
-    - 1.8.1.2 Ensure local login warning banner is configured properly - (Automated)
-    - 1.8.1.3 Ensure remote login warning banner is configured properly - (Automated)
-    - 1.8.1.4 Ensure permissions on /etc/motd are configured (Automated)
-    - 1.8.1.5 Ensure permissions on /etc/issue are configured (Automated)
-    - 1.8.1.6 Ensure permissions on /etc/issue.net are configured - (Automated)
+    - 1.1.2 Ensure /tmp is configured (Automated)
+    - 1.1.3 Ensure nodev option set on /tmp partition (Automated)
+    - 1.1.4 Ensure nosuid option set on /tmp partition (Automated)
+    - 1.1.5 Ensure noexec option set on /tmp partition (Automated)
+    - 1.1.6 Ensure /dev/shm is configured (Automated)
+    - 1.1.7 Ensure nodev option set on /dev/shm partition (Automated)
+    - 1.1.8 Ensure nosuid option set on /dev/shm partition (Automated)
+    - 1.1.9 Ensure noexec option set on /dev/shm partition (Automated)
+    - 1.1.10 Ensure separate partition exists for /var (Automated)
+    - 1.1.11 Ensure separate partition exists for /var/tmp (Automated)
+    - 1.1.12 Ensure nodev option set on /var/tmp partition (Automated)
+    - 1.1.13 Ensure nosuid option set on /var/tmp partition (Automated)
+    - 1.1.14 Ensure noexec option set on /var/tmp partition (Automated)
+    - 1.1.15 Ensure separate partition exists for /var/log (Automated)
+    - 1.1.16 Ensure separate partition exists for /var/log/audit - (Automated)
+    - 1.1.17 Ensure separate partition exists for /home (Automated)
+    - 1.1.18 Ensure nodev option set on /home partition (Automated)
+    - ~~1.1.19 Ensure nodev option set on removable media partitions (Manual)~~
+    - ~~1.1.20 Ensure nosuid option set on removable media partitions - (Manual)~~
+    - ~~1.1.21 Ensure noexec option set on removable media partitions - (Manual)~~
+    - 1.1.22 Ensure sticky bit is set on all world-writable directories - (Automated)
+    - 1.1.23 Disable Automounting (Automated)
+    - 1.1.24 Disable USB Storage (Automated)
+  - 1.2 Configure Software Updates
+    - ~~1.2.1 Ensure package manager repositories are configured (Manual)~~
+    - ~~1.2.2 Ensure GPG keys are configured (Manual)~~
+  - 1.3 Configure sudo
+    - 1.3.1 Ensure sudo is installed (Automated)
+    - 1.3.2 Ensure sudo commands use pty (Automated)
+    - 1.3.3 Ensure sudo log file exists (Automated)
+  - 1.4 Filesystem Integrity Checking
+    - 1.4.1 Ensure AIDE is installed (Automated)
+    - 1.4.2 Ensure filesystem integrity is regularly checked (Automated)
+  - 1.5 Secure Boot Settings
+    - 1.5.1 Ensure bootloader password is set (Automated)
+    - 1.5.2 Ensure permissions on bootloader config are configured - (Automated)
+    - 1.5.3 Ensure authentication required for single user mode (Automated)
+  - 1.6 Additional Process Hardening**
+    - 1.6.1 Ensure XD/NX support is enabled (Automated)
+    - 1.6.2 Ensure address space layout randomization (ASLR) is enabled - (Automated)
+    - 1.6.3 Ensure prelink is disabled (Automated)
+    - 1.6.4 Ensure core dumps are restricted (Automated)
+  - 1.7 Mandatory Access Control**
+    - 1.7.1 Configure AppArmor
+      - 1.7.1.1 Ensure AppArmor is installed (Automated)
+      - 1.7.1.2 Ensure AppArmor is enabled in the bootloader configuration - (Automated)
+      - ~~1.7.1.3 Ensure all AppArmor Profiles are in enforce or complain mode - (Automated)~~
+      - ~~1.7.1.4 Ensure all AppArmor Profiles are enforcing (Automated)~~
+  - 1.8 Warning Banners**
+    - 1.8.1 Command Line Warning Banners
+      - 1.8.1.1 Ensure message of the day is configured properly (Automated)
+      - 1.8.1.2 Ensure local login warning banner is configured properly - (Automated)
+      - 1.8.1.3 Ensure remote login warning banner is configured properly - (Automated)
+      - 1.8.1.4 Ensure permissions on /etc/motd are configured (Automated)
+      - 1.8.1.5 Ensure permissions on /etc/issue are configured (Automated)
+      - 1.8.1.6 Ensure permissions on /etc/issue.net are configured - (Automated)
   - 1.9 Ensure updates, patches, and additional security software are - installed (Manual)
   - 1.10 Ensure GDM is removed or login is configured (Automated)
 
@@ -448,7 +437,6 @@ Some examples of using tags:
     - 5.1.7 Ensure permissions on /etc/cron.d are configured (Automated)
     - 5.1.8 Ensure cron is restricted to authorized users (Automated)
     - 5.1.9 Ensure at is restricted to authorized users (Automated)
-
   - 5.2 Configure SSH Server
     - 5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured - (Automated)
     - 5.2.2 Ensure permissions on SSH private host key files are - configured (Automated)
@@ -488,26 +476,25 @@ Some examples of using tags:
     - 5.4.3 Ensure default group for the root account is GID 0 (Automated)
     - 5.4.4 Ensure default user umask is 027 or more restrictive - (Automated)
     - 5.4.5 Ensure default user shell timeout is 900 seconds or less - (Automated)
-    - ~~5.5 Ensure root login is restricted to system console (Manual)~~
-    - 5.6 Ensure access to the su command is restricted (Automated)
+  - ~~5.5 Ensure root login is restricted to system console (Manual)~~
+  - 5.6 Ensure access to the su command is restricted (Automated)
 
 **6 System Maintenance**
   - 6.1 System File Permissions
     - ~~6.1.1 Audit system file permissions (Manual)~~
-  - 6.1.2 Ensure permissions on /etc/passwd are configured (Automated)
-  - 6.1.3 Ensure permissions on /etc/gshadow- are configured Automated)
-  - 6.1.4 Ensure permissions on /etc/shadow are configured (Automated)
-  - 6.1.5 Ensure permissions on /etc/group are configured (Automated)
-  - 6.1.6 Ensure permissions on /etc/passwd- are configured (Automated)
-  - 6.1.7 Ensure permissions on /etc/shadow- are configured (Automated)
-  - 6.1.8 Ensure permissions on /etc/group- are configured (Automated)
-  - 6.1.9 Ensure permissions on /etc/gshadow are configured (Automated)
-  - ~~6.1.10 Ensure no world writable files exist (Automated)~~
-  - ~~6.1.11 Ensure no unowned files or directories exist (Automated)~~
-  - ~~6.1.12 Ensure no ungrouped files or directories exist (Automated)~~
-  - ~~6.1.13 Audit SUID executables (Manual)~~
-  - ~~6.1.14 Audit SGID executables (Manual)~~
-
+    - 6.1.2 Ensure permissions on /etc/passwd are configured (Automated)
+    - 6.1.3 Ensure permissions on /etc/gshadow- are configured Automated)
+    - 6.1.4 Ensure permissions on /etc/shadow are configured (Automated)
+    - 6.1.5 Ensure permissions on /etc/group are configured (Automated)
+    - 6.1.6 Ensure permissions on /etc/passwd- are configured (Automated)
+    - 6.1.7 Ensure permissions on /etc/shadow- are configured (Automated)
+    - 6.1.8 Ensure permissions on /etc/group- are configured (Automated)
+    - 6.1.9 Ensure permissions on /etc/gshadow are configured (Automated)
+    - ~~6.1.10 Ensure no world writable files exist (Automated)~~
+    - ~~6.1.11 Ensure no unowned files or directories exist (Automated)~~
+    - ~~6.1.12 Ensure no ungrouped files or directories exist (Automated)~~
+    - ~~6.1.13 Audit SUID executables (Manual)~~
+    - ~~6.1.14 Audit SGID executables (Manual)~~
   - 6.2 User and Group Settings
     - 6.2.1 Ensure password fields are not empty (Automated)
     - 6.2.2 Ensure root is the only UID 0 account (Automated)
