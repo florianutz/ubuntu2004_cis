@@ -227,14 +227,14 @@ Some examples of using tags:
 
  **1 Initial Setup**
   - 1.1 Filesystem Configuration
-   - 1.1.1 Disable unused filesystems
-   - 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)
-   - 1.1.1.2 Ensure mounting of freevxfs filesystems is disabled - (Automated)
-   - 1.1.1.3 Ensure mounting of jffs2 filesystems is disabled (Automated)
-   - 1.1.1.4 Ensure mounting of hfs filesystems is disabled (Automated)
-   - 1.1.1.5 Ensure mounting of hfsplus filesystems is disabled - (Automated)
-   - 1.1.1.6 Ensure mounting of udf filesystems is disabled (Automated)
-   - 1.1.1.7 Ensure mounting of FAT filesystems is limited (Manual)
+    - 1.1.1 Disable unused filesystems
+    - 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)
+    - 1.1.1.2 Ensure mounting of freevxfs filesystems is disabled - (Automated)
+    - 1.1.1.3 Ensure mounting of jffs2 filesystems is disabled (Automated)
+    - 1.1.1.4 Ensure mounting of hfs filesystems is disabled (Automated)
+    - 1.1.1.5 Ensure mounting of hfsplus filesystems is disabled - (Automated)
+    - 1.1.1.6 Ensure mounting of udf filesystems is disabled (Automated)
+    - 1.1.1.7 Ensure mounting of FAT filesystems is limited (Manual)
   - 1.1.2 Ensure /tmp is configured (Automated)
   - 1.1.3 Ensure nodev option set on /tmp partition (Automated)
   - 1.1.4 Ensure nosuid option set on /tmp partition (Automated)
@@ -289,157 +289,152 @@ Some examples of using tags:
 
 **1.7 Mandatory Access Control**
   - 1.7.1 Configure AppArmor
-  - 1.7.1.1 Ensure AppArmor is installed (Automated)
-  - 1.7.1.2 Ensure AppArmor is enabled in the bootloader configuration - (Automated)
-  - ~~1.7.1.3 Ensure all AppArmor Profiles are in enforce or complain mode - (Automated)~~
-  - ~~1.7.1.4 Ensure all AppArmor Profiles are enforcing (Automated)~~
+    - 1.7.1.1 Ensure AppArmor is installed (Automated)
+    - 1.7.1.2 Ensure AppArmor is enabled in the bootloader configuration - (Automated)
+    - ~~1.7.1.3 Ensure all AppArmor Profiles are in enforce or complain mode - (Automated)~~
+    - ~~1.7.1.4 Ensure all AppArmor Profiles are enforcing (Automated)~~
 
 **1.8 Warning Banners**
   - 1.8.1 Command Line Warning Banners
-  - 1.8.1.1 Ensure message of the day is configured properly (Automated)
-  - 1.8.1.2 Ensure local login warning banner is configured properly - (Automated)
-  - 1.8.1.3 Ensure remote login warning banner is configured properly - (Automated)
-  - 1.8.1.4 Ensure permissions on /etc/motd are configured (Automated)
-  - 1.8.1.5 Ensure permissions on /etc/issue are configured (Automated)
-  - 1.8.1.6 Ensure permissions on /etc/issue.net are configured - (Automated)
+    - 1.8.1.1 Ensure message of the day is configured properly (Automated)
+    - 1.8.1.2 Ensure local login warning banner is configured properly - (Automated)
+    - 1.8.1.3 Ensure remote login warning banner is configured properly - (Automated)
+    - 1.8.1.4 Ensure permissions on /etc/motd are configured (Automated)
+    - 1.8.1.5 Ensure permissions on /etc/issue are configured (Automated)
+    - 1.8.1.6 Ensure permissions on /etc/issue.net are configured - (Automated)
   - 1.9 Ensure updates, patches, and additional security software are - installed (Manual)
   - 1.10 Ensure GDM is removed or login is configured (Automated)
 
 **2 Services**
   - 2.1 inetd Services
-  - 2.1.1 Ensure xinetd is not installed (Automated)
-  - 2.1.2 Ensure openbsd-inetd is not installed (Automated)
+    - 2.1.1 Ensure xinetd is not installed (Automated)
+    - 2.1.2 Ensure openbsd-inetd is not installed (Automated)
   - 2.2 Special Purpose Services
-  - 2.2.1 Time Synchronization
-  - 2.2.1.1 Ensure time synchronization is in use (Automated)
-  - ~~2.2.1.2 Ensure systemd-timesyncd is configured (Manual)~~
-  - 2.2.1.3 Ensure chrony is configured (Automated)
-  - 2.2.1.4 Ensure ntp is configured (Automated)
-  - 2.2.2 Ensure X Window System is not installed (Automated)
-  - 2.2.3 Ensure Avahi Server is not installed (Automated)
-  - 2.2.4 Ensure CUPS is not installed (Automated)
-  - 2.2.5 Ensure DHCP Server is not installed (Automated)
-  - 2.2.6 Ensure LDAP server is not installed (Automated)
-  - 2.2.7 Ensure NFS is not installed (Automated)
-  - 2.2.8 Ensure DNS Server is not installed (Automated)
-  - 2.2.9 Ensure FTP Server is not installed (Automated)
-  - 2.2.10 Ensure HTTP server is not installed (Automated)
-  - 2.2.11 Ensure IMAP and POP3 server are not installed (Automated)
-  - 2.2.12 Ensure Samba is not installed (Automated)
-  - 2.2.13 Ensure HTTP Proxy Server is not installed (Automated)
-  - 2.2.14 Ensure SNMP Server is not installed (Automated)
-  - 2.2.15 Ensure mail transfer agent is configured for local-only mode - (Automated)
-  - 2.2.16 Ensure rsync service is not installed (Automated)
-  - 2.2.17 Ensure NIS Server is not installed (Automated)
-
-**2.3 Service Clients**
-  - 2.3.1 Ensure NIS Client is not installed (Automated)
-  - 2.3.2 Ensure rsh client is not installed (Automated)
-  - 2.3.3 Ensure talk client is not installed (Automated)
-  - 2.3.4 Ensure telnet client is not installed (Automated)
-  - 2.3.5 Ensure LDAP client is not installed (Automated)
-  - 2.3.6 Ensure RPC is not installed (Automated)
+    - 2.2.1 Time Synchronization
+      - 2.2.1.1 Ensure time synchronization is in use (Automated)
+      - ~~2.2.1.2 Ensure systemd-timesyncd is configured (Manual)~~
+      - 2.2.1.3 Ensure chrony is configured (Automated)
+      - 2.2.1.4 Ensure ntp is configured (Automated)
+    - 2.2.2 Ensure X Window System is not installed (Automated)
+    - 2.2.3 Ensure Avahi Server is not installed (Automated)
+    - 2.2.4 Ensure CUPS is not installed (Automated)
+    - 2.2.5 Ensure DHCP Server is not installed (Automated)
+    - 2.2.6 Ensure LDAP server is not installed (Automated)
+    - 2.2.7 Ensure NFS is not installed (Automated)
+    - 2.2.8 Ensure DNS Server is not installed (Automated)
+    - 2.2.9 Ensure FTP Server is not installed (Automated)
+    - 2.2.10 Ensure HTTP server is not installed (Automated)
+    - 2.2.11 Ensure IMAP and POP3 server are not installed (Automated)
+    - 2.2.12 Ensure Samba is not installed (Automated)
+    - 2.2.13 Ensure HTTP Proxy Server is not installed (Automated)
+    - 2.2.14 Ensure SNMP Server is not installed (Automated)
+    - 2.2.15 Ensure mail transfer agent is configured for local-only mode - (Automated)
+    - 2.2.16 Ensure rsync service is not installed (Automated)
+    - 2.2.17 Ensure NIS Server is not installed (Automated)
+  - 2.3 Service Clients
+    - 2.3.1 Ensure NIS Client is not installed (Automated)
+    - 2.3.2 Ensure rsh client is not installed (Automated)
+    - 2.3.3 Ensure talk client is not installed (Automated)
+    - 2.3.4 Ensure telnet client is not installed (Automated)
+    - 2.3.5 Ensure LDAP client is not installed (Automated)
+    - 2.3.6 Ensure RPC is not installed (Automated)
   - 2.4 Ensure nonessential services are removed or masked (Manual)
 
 **3 Network Configuration**
   - 3.1 Disable unused network protocols and devices
-  - 3.1.1 Disable IPv6 (Manual)
-  - 3.1.2 Ensure wireless interfaces are disabled (Automated)
-
-**3.2 Network Parameters (Host-Only)**
-  - 3.2.1 Ensure packet redirect sending is disabled (Automated)
-  - 3.2.2 Ensure IP forwarding is disabled (Automated)
-
-**3.3 Network Parameters (Host and Router)**
-  - 3.3.1 Ensure source-routed packets are not accepted (Automated)
-  - 3.3.2 Ensure ICMP redirects are not accepted (Automated)
-  - 3.3.3 Ensure secure ICMP redirects are not accepted (Automated)
-  - 3.3.4 Ensure suspicious packets are logged (Automated)
-  - 3.3.5 Ensure broadcast ICMP requests are ignored (Automated)
-  - 3.3.6 Ensure bogus ICMP responses are ignored (Automated)
-  - 3.3.7 Ensure Reverse Path Filtering is enabled (Automated)
-  - 3.3.8 Ensure TCP SYN Cookies is enabled (Automated)
-  - 3.3.9 Ensure IPv6 router advertisements are not accepted (Automated)
-
-**3.4 Uncommon Network Protocols**
-  - 3.4.1 Ensure DCCP is disabled (Automated)
-  - 3.4.2 Ensure SCTP is disabled (Automated)
-  - 3.4.3 Ensure RDS is disabled (Automated)
-  - 3.4.4 Ensure TIPC is disabled (Automated)
-
-**3.5 Firewall Configuration**
-  - 3.5.1 Configure UncomplicatedFirewall
-  - 3.5.1.1 Ensure Uncomplicated Firewall is installed (Automated)
-  - 3.5.1.2 Ensure iptables-persistent is not installed (Automated)
-  - 3.5.1.3 Ensure ufw service is enabled (Automated)
-  - 3.5.1.4 Ensure loopback traffic is configured (Automated)
-  - 3.5.1.5 Ensure outbound connections are configured (Manual)
-  - 3.5.1.6 Ensure firewall rules exist for all open ports (Manual)
-  - 3.5.1.7 Ensure default deny firewall policy (Automated)
-  - ~~3.5.2 Configure nftables~~
-  - ~~3.5.2.1 Ensure nftables is installed (Automated)~~
-  - ~~3.5.2.2 Ensure Uncomplicated Firewall is not installed or disabled - (Automated)~~
-  - ~~3.5.2.3 Ensure iptables are flushed (Manual)~~
-  - ~~3.5.2.4 Ensure a table exists (Automated)~~
-  - ~~3.5.2.5 Ensure base chains exist (Automated)~~
-  - ~~3.5.2.6 Ensure loopback traffic is configured (Automated)~~
-  - ~~3.5.2.7 Ensure outbound and established connections are configured - (Manual)243~~
-  - ~~3.5.2.8 Ensure default deny firewall policy (Automated)~~
-  - ~~3.5.2.9 Ensure nftables service is enabled (Automated)~~
-  - ~~3.5.2.10 Ensure nftables rules are permanent (Automated)~~
-  - ~~3.5.3 Configure iptables~~
-  - ~~3.5.3.1.1 Ensure iptables packages are installed (Automated)~~
-  - ~~3.5.3.1.2 Ensure nftables is not installed (Automated)~~
-  - ~~3.5.3.1.3 Ensure Uncomplicated Firewall is not installed or disabled - (Automated)~~
-  - ~~3.5.3.2.1 Ensure default deny firewall policy (Automated)~~
-  - ~~3.5.3.2.2 Ensure loopback traffic is configured (Automated)~~
-  - ~~3.5.3.2.3 Ensure outbound and established connections are configured - (Manual)~~
-  - ~~3.5.3.2.4 Ensure firewall rules exist for all open ports (Automated)~~
-  - ~~3.5.3.3.1 Ensure IPv6 default deny firewall policy (Automated)~~
-  - ~~3.5.3.3.2 Ensure IPv6 loopback traffic is configured (Automated)~~
-  - ~~3.5.3.3.3 Ensure IPv6 outbound and established connections are - configured (Manual)~~
-  - ~~3.5.3.3.4 Ensure IPv6 firewall rules exist for all open ports - (Manual)~~
+    - 3.1.1 Disable IPv6 (Manual)
+    - 3.1.2 Ensure wireless interfaces are disabled (Automated)
+  - 3.2 Network Parameters (Host-Only)
+    - 3.2.1 Ensure packet redirect sending is disabled (Automated)
+    - 3.2.2 Ensure IP forwarding is disabled (Automated)
+  - 3.3 Network Parameters (Host and Router)
+    - 3.3.1 Ensure source-routed packets are not accepted (Automated)
+    - 3.3.2 Ensure ICMP redirects are not accepted (Automated)
+    - 3.3.3 Ensure secure ICMP redirects are not accepted (Automated)
+    - 3.3.4 Ensure suspicious packets are logged (Automated)
+    - 3.3.5 Ensure broadcast ICMP requests are ignored (Automated)
+    - 3.3.6 Ensure bogus ICMP responses are ignored (Automated)
+    - 3.3.7 Ensure Reverse Path Filtering is enabled (Automated)
+    - 3.3.8 Ensure TCP SYN Cookies is enabled (Automated)
+    - 3.3.9 Ensure IPv6 router advertisements are not accepted (Automated)
+  - 3.4 Uncommon Network Protocols
+    - 3.4.1 Ensure DCCP is disabled (Automated)
+    - 3.4.2 Ensure SCTP is disabled (Automated)
+    - 3.4.3 Ensure RDS is disabled (Automated)
+    - 3.4.4 Ensure TIPC is disabled (Automated)
+  - 3.5 Firewall Configuration
+    - 3.5.1 Configure UncomplicatedFirewall
+      - 3.5.1.1 Ensure Uncomplicated Firewall is installed (Automated)
+      - 3.5.1.2 Ensure iptables-persistent is not installed (Automated)
+      - 3.5.1.3 Ensure ufw service is enabled (Automated)
+      - 3.5.1.4 Ensure loopback traffic is configured (Automated)
+      - 3.5.1.5 Ensure outbound connections are configured (Manual)
+      - 3.5.1.6 Ensure firewall rules exist for all open ports (Manual)
+      - 3.5.1.7 Ensure default deny firewall policy (Automated)
+    - ~~3.5.2 Configure nftables~~
+      - ~~3.5.2.1 Ensure nftables is installed (Automated)~~
+      - ~~3.5.2.2 Ensure Uncomplicated Firewall is not installed or disabled - (Automated)~~
+      - ~~3.5.2.3 Ensure iptables are flushed (Manual)~~
+      - ~~3.5.2.4 Ensure a table exists (Automated)~~
+      - ~~3.5.2.5 Ensure base chains exist (Automated)~~
+      - ~~3.5.2.6 Ensure loopback traffic is configured (Automated)~~
+      - ~~3.5.2.7 Ensure outbound and established connections are configured - (Manual)243~~
+      - ~~3.5.2.8 Ensure default deny firewall policy (Automated)~~
+      - ~~3.5.2.9 Ensure nftables service is enabled (Automated)~~
+      - ~~3.5.2.10 Ensure nftables rules are permanent (Automated)~~
+    - ~~3.5.3 Configure iptables~~
+      - ~~3.5.3.1.1 Ensure iptables packages are installed (Automated)~~
+      - ~~3.5.3.1.2 Ensure nftables is not installed (Automated)~~
+      - ~~3.5.3.1.3 Ensure Uncomplicated Firewall is not installed or disabled - (Automated)~~
+      - ~~3.5.3.2.1 Ensure default deny firewall policy (Automated)~~
+      - ~~3.5.3.2.2 Ensure loopback traffic is configured (Automated)~~
+      - ~~3.5.3.2.3 Ensure outbound and established connections are configured - (Manual)~~
+      - ~~3.5.3.2.4 Ensure firewall rules exist for all open ports (Automated)~~
+      - ~~3.5.3.3.1 Ensure IPv6 default deny firewall policy (Automated)~~
+      - ~~3.5.3.3.2 Ensure IPv6 loopback traffic is configured (Automated)~~
+      - ~~3.5.3.3.3 Ensure IPv6 outbound and established connections are - configured (Manual)~~
+      - ~~3.5.3.3.4 Ensure IPv6 firewall rules exist for all open ports - (Manual)~~
 
 **4 Logging and Auditing**
   - 4.1 Configure System Accounting (auditd)
-  - 4.1.1 Ensure auditing is enabled
-  - 4.1.1.1 Ensure auditd is installed (Automated)
-  - 4.1.1.2 Ensure auditd service is enabled (Automated)
-  - 4.1.1.3 Ensure auditing for processes that start prior to auditd is - enabled (Automated)
-  - 4.1.1.4 Ensure audit_backlog_limit is sufficient (Automated)
-  - 4.1.2 Configure Data Retention
-  - 4.1.2.1 Ensure audit log storage size is configured (Automated)
-  - 4.1.2.2 Ensure audit logs are not automatically deleted (Automated)
-  - 4.1.2.3 Ensure system is disabled when audit logs are full - (Automated)
-  - 4.1.3 Ensure events that modify date and time information are - collected (Automated)
-  - 4.1.4 Ensure events that modify user/group information are collected - (Automated)
-  - 4.1.5 Ensure events that modify the system's network environment are - collected (Automated)
-  - 4.1.6 Ensure events that modify the system's Mandatory Access - Controls are collected (Automated)
-  - 4.1.7 Ensure login and logout events are collected (Automated)
-  - 4.1.8 Ensure session initiation information is collected (Automated)
-  - 4.1.9 Ensure discretionary access control permission modification - events are collected (Automated)
-  - 4.1.10 Ensure unsuccessful unauthorized file access attempts are - collected (Automated)
-  - 4.1.11 Ensure use of privileged commands is collected (Automated)
-  - 4.1.12 Ensure successful file system mounts are collected (Automated)
-  - 4.1.13 Ensure file deletion events by users are collected (Automated)
-  - 4.1.14 Ensure changes to system administration scope (sudoers) is - collected (Automated)
-  - 4.1.15 Ensure system administrator command executions (sudo) are - collected (Automated)
-  - 4.1.16 Ensure kernel module loading and unloading is collected - (Automated)
-  - 4.1.17 Ensure the audit configuration is immutable (Automated)
+    - 4.1.1 Ensure auditing is enabled
+      - 4.1.1.1 Ensure auditd is installed (Automated)
+      - 4.1.1.2 Ensure auditd service is enabled (Automated)
+      - 4.1.1.3 Ensure auditing for processes that start prior to auditd is - enabled (Automated)
+      - 4.1.1.4 Ensure audit_backlog_limit is sufficient (Automated)
+    - 4.1.2 Configure Data Retention
+      - 4.1.2.1 Ensure audit log storage size is configured (Automated)
+      - 4.1.2.2 Ensure audit logs are not automatically deleted (Automated)
+      - 4.1.2.3 Ensure system is disabled when audit logs are full - (Automated)
+    - 4.1.3 Ensure events that modify date and time information are - collected (Automated)
+    - 4.1.4 Ensure events that modify user/group information are collected - (Automated)
+    - 4.1.5 Ensure events that modify the system's network environment are - collected (Automated)
+    - 4.1.6 Ensure events that modify the system's Mandatory Access - Controls are collected (Automated)
+    - 4.1.7 Ensure login and logout events are collected (Automated)
+    - 4.1.8 Ensure session initiation information is collected (Automated)
+    - 4.1.9 Ensure discretionary access control permission modification - events are collected (Automated)
+    - 4.1.10 Ensure unsuccessful unauthorized file access attempts are - collected (Automated)
+    - 4.1.11 Ensure use of privileged commands is collected (Automated)
+    - 4.1.12 Ensure successful file system mounts are collected (Automated)
+    - 4.1.13 Ensure file deletion events by users are collected (Automated)
+    - 4.1.14 Ensure changes to system administration scope (sudoers) is - collected (Automated)
+    - 4.1.15 Ensure system administrator command executions (sudo) are - collected (Automated)
+    - 4.1.16 Ensure kernel module loading and unloading is collected - (Automated)
+    - 4.1.17 Ensure the audit configuration is immutable (Automated)
 
-**4.2 Configure Logging**
-  - 4.2.1 Configure rsyslog
-  - 4.2.1.1 Ensure rsyslog is installed (Automated)
-  - 4.2.1.2 Ensure rsyslog Service is enabled (Automated)
-  - ~~4.2.1.3 Ensure logging is configured (Manual)~~
-  - 4.2.1.4 Ensure rsyslog default file permissions configured - (Automated)
-  - ~~4.2.1.5 Ensure rsyslog is configured to send logs to a remote log - host (Automated)~~
-  - ~~4.2.1.6 Ensure remote rsyslog messages are only accepted on - designated log hosts. (Manual)~~
-  - 4.2.2 Configure journald
-  - 4.2.2.1 Ensure journald is configured to send logs to rsyslog - (Automated)
-  - 4.2.2.2 Ensure journald is configured to compress large log files - (Automated)
-  - 4.2.2.3 Ensure journald is configured to write logfiles to - persistent disk (Automated)
-  - 4.2.3 Ensure permissions on all logfiles are configured (Automated)
+  - 4.2 Configure Logging
+    - 4.2.1 Configure rsyslog
+      - 4.2.1.1 Ensure rsyslog is installed (Automated)
+      - 4.2.1.2 Ensure rsyslog Service is enabled (Automated)
+      - ~~4.2.1.3 Ensure logging is configured (Manual)~~
+      - 4.2.1.4 Ensure rsyslog default file permissions configured - (Automated)
+      - ~~4.2.1.5 Ensure rsyslog is configured to send logs to a remote log - host (Automated)~~
+      - ~~4.2.1.6 Ensure remote rsyslog messages are only accepted on - designated log hosts. (Manual)~~
+    - 4.2.2 Configure journald
+      - 4.2.2.1 Ensure journald is configured to send logs to rsyslog - (Automated)
+      - 4.2.2.2 Ensure journald is configured to compress large log files - (Automated)
+      - 4.2.2.3 Ensure journald is configured to write logfiles to - persistent disk (Automated)
+    - 4.2.3 Ensure permissions on all logfiles are configured (Automated)
   - 4.3 Ensure logrotate is configured (Manual)
   - 4.4 Ensure logrotate assigns appropriate permissions (Automated)
 
