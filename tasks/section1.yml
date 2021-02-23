@@ -318,6 +318,8 @@
   register: var_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_10
   tags:
@@ -332,6 +334,8 @@
   register: var_tmp_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_11
   tags:
@@ -368,6 +372,8 @@
   register: var_log_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_15
   tags:
@@ -382,6 +388,8 @@
   register: var_log_audit_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_16
   tags:
@@ -396,6 +404,8 @@
   register: home_mounted
   changed_when: false
   failed_when: false
+  args: 
+      warn: false
   when:
       - ubuntu2004cis_rule_1_1_17
   tags:
@@ -532,6 +542,7 @@
       - notscored
       - patch
       - rule_1.2.1
+      - notimplemented
 
 - name: "NOTSCORED | 1.2.2 | PATCH | Ensure GPG keys are configured"
   command: /bin/true
@@ -689,7 +700,6 @@
       - grub
       - patch
       - rule_1.5.1
-      - notimplemented
 
 - name: "SCORED | 1.5.1 | PATCH | Ensure bootloader password is set - generate config"
   copy:
@@ -792,7 +802,6 @@
       - scored
       - patch
       - rule_1.5.3
-      - notimplemented
 
 - name: "SCORED | 1.6.1 | PATCH | Ensure XD/NX support is enabled"
   shell: |
@@ -899,11 +908,10 @@
 
 - name: "SCORED | 1.7.1.1 | PATCH | Ensure AppArmor is installed"
   apt:
-      name: '{{ item }}'
+      name: 
+          - apparmor
+          - apparmor-utils
       state: present
-  with_items:
-      - apparmor
-      - apparmor-utils
   when:
       - ubuntu2004cis_rule_1_7_1_1
   tags:
