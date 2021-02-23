@@ -367,7 +367,7 @@ Some examples of using tags:
       - ~~3.5.2.4 Ensure a table exists (Automated)~~
       - ~~3.5.2.5 Ensure base chains exist (Automated)~~
       - ~~3.5.2.6 Ensure loopback traffic is configured (Automated)~~
-      - ~~3.5.2.7 Ensure outbound and established connections are configured - (Manual)243~~
+      - ~~3.5.2.7 Ensure outbound and established connections are configured - (Manual)~~
       - ~~3.5.2.8 Ensure default deny firewall policy (Automated)~~
       - ~~3.5.2.9 Ensure nftables service is enabled (Automated)~~
       - ~~3.5.2.10 Ensure nftables rules are permanent (Automated)~~
