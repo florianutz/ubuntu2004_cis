@@ -223,10 +223,10 @@ Some examples of using tags:
     ansible-playbook site.yml --tags="patch"
 ```
 
-## Table of Roles:
+## List of Recommendations:
 
 **1 Initial Setup**
-  - 1.1 Filesystem Configuration
+  - **1.1 Filesystem Configuration**
     - 1.1.1 Disable unused filesystems
       - 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)
       - 1.1.1.2 Ensure mounting of freevxfs filesystems is disabled - (Automated)
@@ -258,32 +258,32 @@ Some examples of using tags:
     - 1.1.22 Ensure sticky bit is set on all world-writable directories - (Automated)
     - 1.1.23 Disable Automounting (Automated)
     - 1.1.24 Disable USB Storage (Automated)
-  - 1.2 Configure Software Updates
+  - **~~1.2 Configure Software Updates~~**
     - ~~1.2.1 Ensure package manager repositories are configured (Manual)~~
     - ~~1.2.2 Ensure GPG keys are configured (Manual)~~
-  - 1.3 Configure sudo
+  - **1.3 Configure sudo**
     - 1.3.1 Ensure sudo is installed (Automated)
     - 1.3.2 Ensure sudo commands use pty (Automated)
     - 1.3.3 Ensure sudo log file exists (Automated)
-  - 1.4 Filesystem Integrity Checking
+  - **1.4 Filesystem Integrity Checking**
     - 1.4.1 Ensure AIDE is installed (Automated)
     - 1.4.2 Ensure filesystem integrity is regularly checked (Automated)
-  - 1.5 Secure Boot Settings
+  - **1.5 Secure Boot Settings**
     - 1.5.1 Ensure bootloader password is set (Automated)
     - 1.5.2 Ensure permissions on bootloader config are configured - (Automated)
     - 1.5.3 Ensure authentication required for single user mode (Automated)
-  - 1.6 Additional Process Hardening**
+  - **1.6 Additional Process Hardening**
     - 1.6.1 Ensure XD/NX support is enabled (Automated)
     - 1.6.2 Ensure address space layout randomization (ASLR) is enabled - (Automated)
     - 1.6.3 Ensure prelink is disabled (Automated)
     - 1.6.4 Ensure core dumps are restricted (Automated)
-  - 1.7 Mandatory Access Control**
+  - **1.7 Mandatory Access Control**
     - 1.7.1 Configure AppArmor
       - 1.7.1.1 Ensure AppArmor is installed (Automated)
       - 1.7.1.2 Ensure AppArmor is enabled in the bootloader configuration - (Automated)
       - ~~1.7.1.3 Ensure all AppArmor Profiles are in enforce or complain mode - (Automated)~~
       - ~~1.7.1.4 Ensure all AppArmor Profiles are enforcing (Automated)~~
-  - 1.8 Warning Banners**
+  - **1.8 Warning Banners**
     - 1.8.1 Command Line Warning Banners
       - 1.8.1.1 Ensure message of the day is configured properly (Automated)
       - 1.8.1.2 Ensure local login warning banner is configured properly - (Automated)
@@ -291,8 +291,8 @@ Some examples of using tags:
       - 1.8.1.4 Ensure permissions on /etc/motd are configured (Automated)
       - 1.8.1.5 Ensure permissions on /etc/issue are configured (Automated)
       - 1.8.1.6 Ensure permissions on /etc/issue.net are configured - (Automated)
-  - 1.9 Ensure updates, patches, and additional security software are - installed (Manual)
-  - 1.10 Ensure GDM is removed or login is configured (Automated)
+  - **1.9 Ensure updates, patches, and additional security software are - installed (Manual)**
+  - **1.10 Ensure GDM is removed or login is configured (Automated)**
 
 **2 Services**
   - 2.1 inetd Services
