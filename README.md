@@ -297,7 +297,7 @@ Some examples of using tags:
 **1.8 Warning Banners**
   - 1.8.1 Command Line Warning Banners
   - 1.8.1.1 Ensure message of the day is configured properly (Automated)
-  - 1.8.1.2 Ensure local login warning banner is configured properly - (Automated) 115
+  - 1.8.1.2 Ensure local login warning banner is configured properly - (Automated)
   - 1.8.1.3 Ensure remote login warning banner is configured properly - (Automated)
   - 1.8.1.4 Ensure permissions on /etc/motd are configured (Automated)
   - 1.8.1.5 Ensure permissions on /etc/issue are configured (Automated)
