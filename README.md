@@ -227,14 +227,14 @@ Some examples of using tags:
 
  **1 Initial Setup**
   - 1.1 Filesystem Configuration
-  - 1.1.1 Disable unused filesystems
-  - 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)
-  - 1.1.1.2 Ensure mounting of freevxfs filesystems is disabled - (Automated)
-  - 1.1.1.3 Ensure mounting of jffs2 filesystems is disabled (Automated)
-  - 1.1.1.4 Ensure mounting of hfs filesystems is disabled (Automated)
-  - 1.1.1.5 Ensure mounting of hfsplus filesystems is disabled - (Automated)
-  - 1.1.1.6 Ensure mounting of udf filesystems is disabled (Automated)
-  - 1.1.1.7 Ensure mounting of FAT filesystems is limited (Manual)
+   - 1.1.1 Disable unused filesystems
+   - 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)
+   - 1.1.1.2 Ensure mounting of freevxfs filesystems is disabled - (Automated)
+   - 1.1.1.3 Ensure mounting of jffs2 filesystems is disabled (Automated)
+   - 1.1.1.4 Ensure mounting of hfs filesystems is disabled (Automated)
+   - 1.1.1.5 Ensure mounting of hfsplus filesystems is disabled - (Automated)
+   - 1.1.1.6 Ensure mounting of udf filesystems is disabled (Automated)
+   - 1.1.1.7 Ensure mounting of FAT filesystems is limited (Manual)
   - 1.1.2 Ensure /tmp is configured (Automated)
   - 1.1.3 Ensure nodev option set on /tmp partition (Automated)
   - 1.1.4 Ensure nosuid option set on /tmp partition (Automated)
