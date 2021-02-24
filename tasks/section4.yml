@@ -606,3 +606,16 @@
       - patch
       - syslog
       - rule_4.3
+
+- name: "NOTSCORED | 4.4 | PATCH | Ensure logrotate assigns appropriate permissions"
+  command: /bin/true
+  changed_when: false
+  when:
+      - ubuntu2004cis_rule_4_4
+  tags:
+      - level1
+      - notscored
+      - patch
+      - syslog
+      - rule_4.4
+      - notimplemented

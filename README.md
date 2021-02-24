@@ -424,7 +424,7 @@ Some examples of using tags:
       - 4.2.2.3 Ensure journald is configured to write logfiles to - persistent disk (Automated)
     - 4.2.3 Ensure permissions on all logfiles are configured (Automated)
   - **4.3 Ensure logrotate is configured (Manual)**
-  - **4.4 Ensure logrotate assigns appropriate permissions (Automated)**
+  - **~~4.4 Ensure logrotate assigns appropriate permissions (Automated)~~**
 
 **5 Access, Authentication and Authorization**
   - **5.1 Configure time-based job schedulers**
