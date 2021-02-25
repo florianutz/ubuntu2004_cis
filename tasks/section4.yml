@@ -606,3 +606,18 @@
       - patch
       - syslog
       - rule_4.3
+
+- name: "SCORED | 4.4 | PATCH | Ensure logrotate assigns appropriate permissions"
+  lineinfile:
+      state: present
+      dest: /etc/logrotate.conf
+      regexp: '^create'
+      line: 'create 0640 root utmp'
+  when:
+      - ubuntu2004cis_rule_4_4
+  tags:
+      - level1
+      - scored
+      - patch
+      - syslog
+      - rule_4.4
