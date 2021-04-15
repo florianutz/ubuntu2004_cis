@@ -612,7 +612,7 @@
       state: present
       dest: /etc/logrotate.conf
       regexp: '^create'
-      line: 'create 0640 root utmp'
+      line: 'create 0640'
   when:
       - ubuntu2004cis_rule_4_4
   tags:
