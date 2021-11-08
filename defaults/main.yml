@@ -368,13 +368,6 @@ ubuntu2004cis_time_synchronization_servers:
 # 3.3 TCP Wrappers
 ubuntu2004cis_setup_tcp_wrappers: false
 
-# 3.3.4 | PATCH | Ensure /etc/hosts.allow is configured
-ubuntu2004cis_host_allow:
-  - "10.0.0.0/255.0.0.0"
-  - "172.16.0.0/255.240.0.0"
-  - "192.168.0.0/255.255.0.0"
-  - "0.0.0.0/0.0.0.0"
-
 ubuntu2004cis_firewall: firewalld
 # ubuntu2004cis_firewall: iptables
 # ubuntu2004cis_firewall: ufw

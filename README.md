@@ -178,14 +178,6 @@ To use other than random password:
 ubuntu2004cis_root_password: 'new password'
 ```
 
-### 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
-```
-ubuntu2004cis_host_allow:
-  - "10.0.0.0/255.0.0.0"  
-  - "172.16.0.0/255.240.0.0"  
-  - "192.168.0.0/255.255.0.0"    
-```  
-
 ```
 ubuntu2004cis_firewall: firewalld
 ubuntu2004cis_firewall: iptables
