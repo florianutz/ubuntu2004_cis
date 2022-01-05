@@ -476,7 +476,7 @@ tmp_mount_file:
   Debian: /usr/share/systemd/tmp.mount
 tmp_mount_options:
   RedHat: mode=1777,strictatime,noexec,nodev,nosuid
-  Debian: mode=1777,strictatime,nodev,nosuid
+  Debian: mode=1777,strictatime,nosuid,nodev,noexec
 chrony_config_file:
   RedHat: /etc/chrony.conf
   Debian: /etc/chrony/chrony.conf
