@@ -368,7 +368,7 @@
         lineinfile:
             dest: /etc/sysconfig/chronyd
             regexp: "^(#)?OPTIONS"
-            line: "OPTIONS=\"-u chrony\""
+            line: "OPTIONS=\"-u {{ chrony_system_user[ansible_os_family] }}\""
             state: present
             create: true
   when:
