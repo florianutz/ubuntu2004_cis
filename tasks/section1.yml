@@ -318,7 +318,7 @@
   register: var_mounted
   changed_when: false
   failed_when: false
-  args: 
+  args:
       warn: false
   when:
       - ubuntu2004cis_rule_1_1_10
@@ -334,7 +334,7 @@
   register: var_tmp_mounted
   changed_when: false
   failed_when: false
-  args: 
+  args:
       warn: false
   when:
       - ubuntu2004cis_rule_1_1_11
@@ -372,7 +372,7 @@
   register: var_log_mounted
   changed_when: false
   failed_when: false
-  args: 
+  args:
       warn: false
   when:
       - ubuntu2004cis_rule_1_1_15
@@ -388,7 +388,7 @@
   register: var_log_audit_mounted
   changed_when: false
   failed_when: false
-  args: 
+  args:
       warn: false
   when:
       - ubuntu2004cis_rule_1_1_16
@@ -404,7 +404,7 @@
   register: home_mounted
   changed_when: false
   failed_when: false
-  args: 
+  args:
       warn: false
   when:
       - ubuntu2004cis_rule_1_1_17
@@ -661,6 +661,17 @@
       - patch
       - rule_1.4.1
 
+- name: "SCORED | 1.4.1 | PATCH | Stat AIDE daily cron"
+  stat: path=/etc/cron.daily/aide
+  register: aide_daily_cron
+  tags:
+    - level1
+    - scored
+    - aide
+    - file_integrity
+    - patch
+    - rule_1.4.2
+
 - name: "SCORED | 1.4.2 | PATCH | Ensure filesystem integrity is regularly checked"
   cron:
       name: Run AIDE integrity check weekly
@@ -670,10 +681,11 @@
       hour: "{{ ubuntu2004cis_aide_cron['aide_hour'] | default('5') }}"
       day: "{{ ubuntu2004cis_aide_cron['aide_day'] | default('*') }}"
       month: "{{ ubuntu2004cis_aide_cron['aide_month'] | default('*') }}"
-      weekday: "{{ ubuntu2004cis_aide_cron['aide_weekday'] | default('*') }}"
+      weekday: "{{ ubuntu2004cis_aide_cron['aide_weekday'] | default('0') }}"
       job: "{{ ubuntu2004cis_aide_cron['aide_job'] }}"
   when:
       - ubuntu2004cis_rule_1_4_2
+      - not aide_daily_cron.stat.exists
   tags:
       - level1
       - scored
@@ -908,7 +920,7 @@
 
 - name: "SCORED | 1.7.1.1 | PATCH | Ensure AppArmor is installed"
   apt:
-      name: 
+      name:
           - apparmor
           - apparmor-utils
       state: present
