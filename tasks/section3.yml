@@ -21,7 +21,7 @@
       - rule_3.1.1
 
 - name: "NOTSCORED | 3.1.1 | PATCH | Disable IPv6"
-  ansible.buitlin.replace:
+  ansible.builtin.replace:
       dest: /etc/default/grub
       regexp: '^(GRUB_CMDLINE_LINUX=(?!.*ipv6.disable)\"[^\"]*)(\".*)'
       replace: '\1 ipv6.disable=1\2'
