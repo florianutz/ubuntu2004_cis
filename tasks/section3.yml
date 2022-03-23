@@ -17,7 +17,7 @@
       - level2
       - notscored
       - patch
-      - sysctl  replace:
+      - sysctl
       - rule_3.1.1
 
 - name: "NOTSCORED | 3.1.1 | PATCH | Disable IPv6"
