@@ -2,13 +2,7 @@ name: Molecule
 
 on:
   push:
-    branches:
-      - main
-      - ci-dev
   pull_request:
-    branches:
-      - main
-      - ci-dev
 
 jobs:
   molecule:
