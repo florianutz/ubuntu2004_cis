@@ -1,7 +1,7 @@
 ---
 # tasks file for Ubuntu2004-CIS
 - name: Check OS version and family
-  fail:
+  ansible.builtin.fail:
       msg: "This role can only be run agaist Ubuntu 20.04. {{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
   when:
       - not ansible_distribution == "Ubuntu"
@@ -10,7 +10,7 @@
       - always
 
 - name: Check ansible version
-  fail:
+  ansible.builtin.fail:
       msg: You must use ansible 2.3 or greater!
   when: not ansible_version.full is version_compare('2.3', '>=')
   tags:

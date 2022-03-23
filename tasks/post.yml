@@ -2,7 +2,7 @@
 # Post tasks
 
 - name: "POST | Find removed but configured apt packages"
-  shell: "set -o pipefail;
+  ansible.builtin.shell: "set -o pipefail;
       dpkg --list | (grep ^rc || true) | tr -s ' ' | cut -d ' ' -f 2"
   args:
       executable: /bin/bash
@@ -10,12 +10,12 @@
   changed_when: false
 
 - name: "POST | Perform apt package cleanup"
-  apt:
-    name: "{{ apt_rc_packages.stdout_lines }}"
-    state: absent
-    purge: true
+  ansible.builtin.apt:
+      name: "{{ apt_rc_packages.stdout_lines }}"
+      state: absent
+      purge: true
   changed_when: false
   ignore_errors: true
   when: not ansible_check_mode
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint

@@ -17,11 +17,11 @@
       - level2
       - notscored
       - patch
-      - sysctl
+      - sysctl  replace:
       - rule_3.1.1
 
 - name: "NOTSCORED | 3.1.1 | PATCH | Disable IPv6"
-  replace:
+  ansible.buitlin.replace:
       dest: /etc/default/grub
       regexp: '^(GRUB_CMDLINE_LINUX=(?!.*ipv6.disable)\"[^\"]*)(\".*)'
       replace: '\1 ipv6.disable=1\2'
@@ -147,7 +147,7 @@
         notify:
             - sysctl flush ipv6 route table
   when:
-    - ubuntu2004cis_rule_3_3_1
+      - ubuntu2004cis_rule_3_3_1
   tags:
       - level1
       - scored
@@ -287,7 +287,7 @@
       - { name: net.ipv4.conf.all.rp_filter, value: 1 }
       - { name: net.ipv4.conf.default.rp_filter, value: 1 }
   when:
-    - ubuntu2004cis_rule_3_3_7
+      - ubuntu2004cis_rule_3_3_7
   notify:
       - sysctl flush ipv4 route table
   tags:
@@ -338,7 +338,7 @@
       - rule_3.3.9
 
 - name: "SCORED | 3.4.1 | PATCH | Ensure DCCP is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install dccp(\\s|$)"
       line: "install dccp /bin/true"
@@ -352,7 +352,7 @@
       - rule_3.4.1
 
 - name: "SCORED | 3.4.2 | PATCH | Ensure SCTP is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install sctp(\\s|$)"
       line: "install sctp /bin/true"
@@ -366,7 +366,7 @@
       - rule_3.4.2
 
 - name: "SCORED | 3.4.3 | PATCH | Ensure RDS is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install rds(\\s|$)"
       line: "install rds /bin/true"
@@ -380,7 +380,7 @@
       - rule_3.4.3
 
 - name: "SCORED | 3.4.4 | PATCH | Ensure TIPC is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install tipc(\\s|$)"
       line: "install tipc /bin/true"
@@ -394,7 +394,7 @@
       - rule_3.4.4
 
 - name: "SCORED | 3.5.1.1 | PATCH | Ensure Uncomplicated Firewall is installed"
-  apt:
+  ansible.builtin.apt:
       name: ufw
       state: present
       install_recommends: false
@@ -409,7 +409,7 @@
       - rule_3.5.1.1
 
 - name: "SCORED | 3.5.1.2 | PATCH | Ensure iptables-persistent is not installed"
-  apt:
+  ansible.builtin.apt:
       name: iptables-persistent
       state: absent
   when:
@@ -423,7 +423,7 @@
       - rule_3.5.1.2
 
 - name: "SCORED | 3.5.1.3 | PATCH | Ensure ufw service is enabled"
-  service:
+  ansible.builtin.service:
       name: ufw
       state: started
       enabled: true
@@ -527,7 +527,7 @@
       - rule_3.5.1.7
 
 - name: "SCORED | 3.5.2.1 | PATCH | Ensure nftables is installed"
-  apt:
+  ansible.builtin.apt:
       name: nftables
       state: present
       install_recommends: false
@@ -542,7 +542,7 @@
       - rule_3.5.2.1
 
 - name: "SCORED | 3.5.2.2 | PATCH | Ensure Uncomplicated Firewall is not installed or disabled"
-  apt:
+  ansible.builtin.apt:
       name: ufw
       state: absent
   when:
@@ -558,11 +558,11 @@
 - name: "NOTSCORED | 3.5.2.3 | PATCH | Ensure iptables are flushed | ipv4, ipv6"
   block:
       - name: "NOTSCORED | 3.5.2.3 | PATCH | Ensure iptables are flushed | ipv4"
-        iptables:
+        ansible.builtin.iptables:
             flush: yes
 
       - name: "NOTSCORED | 3.5.2.3 | PATCH | Ensure iptables are flushed | ipv6"
-        iptables:
+        ansible.builtin.iptables:
             flush: yes
             ip_version: ipv6
         when: ubuntu2004cis_ipv6_required
@@ -577,7 +577,7 @@
       - rule_3.5.2.3
 
 - name: "SCORED | 3.5.2.4 | PATCH | Ensure a table exists"
-  shell: |
+  ansible.builtin.shell: |
       nft create table inet {{ ubuntu2004cis_nftables_table }}
   args:
       executable: /bin/bash
@@ -597,7 +597,7 @@
       - rule_3.5.2.4
 
 - name: "SCORED | 3.5.2.5 | PATCH | Ensure base chains exist"
-  shell: |
+  ansible.builtin.shell: |
       nft chain inet {{ ubuntu2004cis_nftables_table }} {{ item }} { type filter hook {{ item }} priority 0\; }
   args:
       executable: /bin/bash
@@ -620,7 +620,7 @@
 - name: "SCORED | 3.5.2.6 | PATCH | Ensure loopback traffic is configured"
   block:
       - name: "SCORED | 3.5.2.6 | PATCH | Ensure loopback traffic is configured | ingress lo allow nay"
-        shell: |
+        ansible.builtin.shell: |
             nft add rule inet {{ ubuntu2004cis_nftables_table }} input iif lo accept
         args:
             executable: /bin/bash
@@ -628,7 +628,7 @@
         check_mode: false
 
       - name: "SCORED | 3.5.2.6 | PATCH | Ensure loopback traffic is configured | ingress deny from lo network ipv4"
-        shell: |
+        ansible.builtin.shell: |
             nft add rule inet {{ ubuntu2004cis_nftables_table }} input ip saddr 127.0.0.0/8 counter drop
         args:
             executable: /bin/bash
@@ -636,7 +636,7 @@
         check_mode: false
 
       - name: "SCORED | 3.5.2.6 | PATCH | Ensure loopback traffic is configured | ingress deny from lo network ipv6"
-        shell: |
+        ansible.builtin.shell: |
             nft add rule inet {{ ubuntu2004cis_nftables_table }} input ip6 saddr ::1 counter drop
         args:
             executable: /bin/bash
@@ -654,7 +654,7 @@
       - rule_3.5.2.6
 
 - name: "NOTSCORED | 3.5.2.7 | PATCH | Ensure outbound and established connections are configured"
-  shell: |
+  ansible.builtin.shell: |
       nft add rule inet {{ ubuntu2004cis_nftables_table }} input ip protocol {{ item }} ct state established accept
       nft add rule inet {{ ubuntu2004cis_nftables_table }} output ip protocol {{ item }} ct state new,related,established accept
   args:
@@ -676,7 +676,7 @@
       - rule_3.5.2.7
 
 - name: "SCORED | 3.5.2.8 | PATCH | Ensure default deny policy"
-  shell: |
+  ansible.builtin.shell: |
       nft chain inet {{ ubuntu2004cis_nftables_table }} {{ item }} { policy drop \; }
   args:
       executable: /bin/bash
@@ -697,7 +697,7 @@
       - rule_3.5.2.8
 
 - name: "SCORED | 3.5.2.9 | PATCH | Ensure nftables service is enabled"
-  service:
+  ansible.builtin.service:
       name: nftables
       state: started
       enabled: true
@@ -712,7 +712,7 @@
       - rule_3.5.2.9
 
 - name: "SCORED | 3.5.2.10 | PATCH | Ensure nftables rules are permanent"
-  shell:
+  ansible.builtin.shell:
       nft list table inet {{ ubuntu2004cis_nftables_table }} > /etc/nftables.conf
   when:
       - ubuntu2004cis_rule_3_5_2_10
@@ -725,7 +725,7 @@
       - rule_3.5.2.10
 
 - name: "SCORED | 3.5.3.1.1 | PATCH | Ensure a Firewall package is installed | iptables"
-  apt:
+  ansible.builtin.apt:
       name: iptables
       state: present
       install_recommends: false
@@ -739,7 +739,7 @@
 
 - name: "SCORED | 3.5.3.1.2 | PATCH | Ensure nftables is not installed or disabled
         SCORED | 3.5.3.1.3 | PATCH | Ensure Uncomplicated Firewall is not installed or disabled"
-  apt:
+  ansible.builtin.apt:
       name:
           - nftables
           - ufw
@@ -757,7 +757,7 @@
       - rule_3.5.3.1.3
 
 - name: "SCORED | 3.5.3.2.1 | PATCH | Ensure default deny firewall policy"
-  iptables:
+  ansible.builtin.iptables:
       chain: "{{ item }}"
       policy: DROP
   loop:
@@ -777,19 +777,19 @@
 - name: "SCORED | 3.5.3.2.2 | PATCH | Ensure loopback traffic is configured"
   block:
       - name: "SCORED | 3.5.3.2.2 | PATCH | Ensure loopback traffic is configured | ingress lo allow any"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             in_interface: lo
 
       - name: "SCORED | 3.5.3.2.2 | PATCH | Ensure loopback traffic is configured | egress lo allow any"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             in_interface: lo
 
       - name: "SCORED | 3.5.3.2.2 | PATCH | Ensure loopback traffic is configured | ingress deny from lo network"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: DROP
             source: 127.0.0.0/8
@@ -806,7 +806,7 @@
 - name: "NOTSCORED | 3.5.3.2.3 | PATCH | Ensure outbound and established connections are configured"
   block:
       - name: "NOTSCORED | 3.5.3.2.3 | PATCH | Ensure outbound and established connections are configured | input "
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             ctstate: NEW,ESTABLISHED
@@ -817,7 +817,7 @@
             - icmp
 
       - name: "NOTSCORED | 3.5.3.2.3 | PATCH | Ensure outbound and established connections are configured | output"
-        iptables:
+        ansible.builtin.iptables:
             chain: OUTPUT
             jump: ACCEPT
             ctstate: NEW,ESTABLISHED
@@ -839,7 +839,7 @@
 - name: "SCORED | 3.5.3.2.4 | PATCH | Ensure firewall rules exist for all open ports"
   block:
       - name: "SCORED | 3.5.3.2.4 | PATCH | Ensure firewall rules exist for all open ports| ssh"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             ctstate: NEW
@@ -847,7 +847,7 @@
             destination_port: 22
 
       - name: "SCORED | 3.5.3.2.4 | PATCH | Ensure firewall rules exist for all open ports| dns"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             ctstate: NEW
@@ -867,7 +867,7 @@
       - rule_3.5.3.2.4
 
 - name: "SCORED | 3.5.3.3.1 | PATCH | Ensure IPv6 default deny firewall policy"
-  iptables:
+  ansible.builtin.iptables:
       chain: "{{ item }}"
       policy: DROP
       ip_version: ipv6
@@ -889,21 +889,21 @@
 - name: "SCORED | 3.5.3.3.2 | PATCH | Ensure IPv6 loopback traffic is configured"
   block:
       - name: "SCORED | 3.5.3.3.2 | PATCH | Ensure IPv6 loopback traffic is configured| ingress lo allow any"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             in_interface: lo
             ip_version: ipv6
 
       - name: "SCORED | 3.5.3.3.2 | PATCH | Ensure IPv6 loopback traffic is configured| egress lo allow any"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             in_interface: lo
             ip_version: ipv6
 
       - name: "SCORED | 3.5.3.3.2 | PATCH | Ensure IPv6 loopback traffic is configured| ingress deny from lo network"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: DROP
             source: "::1"
@@ -922,7 +922,7 @@
 - name: "NOTSCORED | 3.5.3.3.3 | PATCH | Ensure IPv6 outbound and established connections are configured"
   block:
       - name: "NOTSCORED | 3.5.3.3.3 | PATCH | Ensure IPv6 outbound and established connections are configured | input "
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             ctstate: NEW,ESTABLISHED
@@ -934,7 +934,7 @@
             - icmp
 
       - name: "NOTSCORED | 3.5.3.3.3 | PATCH | Ensure IPv6 outbound and established connections are configured | output"
-        iptables:
+        ansible.builtin.iptables:
             chain: OUTPUT
             jump: ACCEPT
             ctstate: NEW,ESTABLISHED
@@ -958,7 +958,7 @@
 - name: "NOTSCORED | 3.5.3.3.4 | PATCH | Ensure IPv6 firewall rules exist for all open ports"
   block:
       - name: "NOTSCORED | 3.5.3.3.4 | PATCH | Ensure IPv6 firewall rules exist for all open ports| ssh"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             ctstate: NEW
@@ -967,7 +967,7 @@
             ip_version: ipv6
 
       - name: "NOTSCORED | 3.5.3.3.4 | PATCH | Ensure IPv6 firewall rules exist for all open ports| dns"
-        iptables:
+        ansible.builtin.iptables:
             chain: INPUT
             jump: ACCEPT
             ctstate: NEW

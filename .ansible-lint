@@ -1,8 +1,13 @@
 exclude_paths:
   - molecule/
+  - .github/
+  - .travis.yml
 warn_list:  # or 'skip_list' to silence them completely
   - fqcn-builtins
   - risky-file-permissions
   - yaml
 skip_list:
   - experimental
+  - line-length
+  - truthy
+  - braces

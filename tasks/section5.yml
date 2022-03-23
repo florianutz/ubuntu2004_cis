@@ -1,6 +1,6 @@
 ---
 - name: "SCORED | 5.1.1 | PATCH | Ensure cron daemon is enabled"
-  service:
+  ansible.builtin.service:
       name: "{{ cron_service[ansible_os_family] }}"
       enabled: true
   when:
@@ -13,7 +13,7 @@
       - rule_5.1.1
 
 - name: "SCORED | 5.1.2 | PATCH | Ensure permissions on /etc/crontab are configured"
-  file:
+  ansible.builtin.file:
       dest: /etc/crontab
       owner: root
       group: root
@@ -28,7 +28,7 @@
       - rule_5.1.2
 
 - name: "SCORED | 5.1.3 | PATCH | Ensure permissions on /etc/cron.hourly are configured"
-  file:
+  ansible.builtin.file:
       dest: /etc/cron.hourly
       state: directory
       owner: root
@@ -44,7 +44,7 @@
       - rule_5.1.3
 
 - name: "SCORED | 5.1.4 | PATCH | Ensure permissions on /etc/cron.daily are configured"
-  file:
+  ansible.builtin.file:
       dest: /etc/cron.daily
       state: directory
       owner: root
@@ -60,7 +60,7 @@
       - rule_5.1.4
 
 - name: "SCORED | 5.1.5 | PATCH | Ensure permissions on /etc/cron.weekly are configured"
-  file:
+  ansible.builtin.file:
       dest: /etc/cron.weekly
       state: directory
       owner: root
@@ -76,7 +76,7 @@
       - rule_5.1.5
 
 - name: "SCORED | 5.1.6 | PATCH | Ensure permissions on /etc/cron.monthly are configured"
-  file:
+  ansible.builtin.file:
       dest: /etc/cron.monthly
       state: directory
       owner: root
@@ -92,7 +92,7 @@
       - rule_5.1.6
 
 - name: "SCORED | 5.1.7 | PATCH | Ensure permissions on /etc/cron.d are configured"
-  file:
+  ansible.builtin.file:
       dest: /etc/cron.d
       state: directory
       owner: root
@@ -110,17 +110,17 @@
 - name: "SCORED | 5.1.8 | PATCH | Ensure cron is restricted to authorized users"
   block:
       - name: "SCORED | 5.1.8 | PATCH | Ensure cron is restricted to authorized users"
-        file:
+        ansible.builtin.file:
             dest: /etc/cron.deny
             state: absent
 
       - name: "SCORED | 5.1.8 | PATCH | Ensure cron is restricted to authorized users"
-        template:
-          src: cron.allow.j2
-          dest: /etc/cron.allow
-          owner: root
-          group: root
-          mode: 0600
+        ansible.builtin.template:
+            src: cron.allow.j2
+            dest: /etc/cron.allow
+            owner: root
+            group: root
+            mode: 0600
   when:
       - ubuntu2004cis_rule_5_1_8
   tags:
@@ -133,12 +133,12 @@
 - name: "SCORED | 5.1.9 | PATCH | Ensure at is restricted to authorized users"
   block:
       - name: "SCORED | 5.1.9 | PATCH | Ensure at is restricted to authorized users"
-        file:
+        ansible.builtin.file:
             dest: /etc/at.deny
             state: absent
 
       - name: "SCORED | 5.1.8 | PATCH | Ensure at is restricted to authorized users"
-        template:
+        ansible.builtin.template:
             src: at.allow.j2
             dest: /etc/at.allow
             owner: root
@@ -154,7 +154,7 @@
       - rule_5.1.9
 
 - name: "SCORED | 5.2.1 | PATCH | Ensure permissions on /etc/ssh/sshd_config are configured"
-  file:
+  ansible.builtin.file:
       dest: /etc/ssh/sshd_config
       state: file
       owner: root
@@ -172,13 +172,13 @@
 - name: "SCORED | 5.2.2 | PATCH | 5.2.2 Ensure permissions on SSH private host key files are configured"
   block:
       - name: "SCORED | 5.2.2 | PATCH | 5.2.2 Ensure permissions on SSH private host key files are configured | find keys"
-        find:
+        ansible.builtin.find:
             paths: /etc/ssh
             patterns: "ssh_host_*_key"
         register: ssh_private_host_keys
 
       - name: "SCORED | 5.2.2 | PATCH | 5.2.2 Ensure permissions on SSH private host key files are configured | change permissions"
-        file:
+        ansible.builtin.file:
             dest: "{{ item.path }}"
             state: file
             owner: root
@@ -197,13 +197,13 @@
 - name: "SCORED | 5.2.3 | PATCH | 5.2.3 Ensure permissions on SSH public host key files are configured"
   block:
       - name: "SCORED | 5.2.3 | PATCH | 5.2.3 Ensure permissions on SSH public host key files are configured | find keys"
-        find:
+        ansible.builtin.find:
             paths: /etc/ssh
             patterns: "ssh_host_*_key.pub"
         register: ssh_public_host_keys
 
       - name: "SCORED | 5.2.3 | PATCH | 5.2.3 Ensure permissions on SSH public host key files are configured | change permissions"
-        file:
+        ansible.builtin.file:
             dest: "{{ item.path }}"
             state: file
             owner: root
@@ -220,7 +220,7 @@
       - rule_5.2.3
 
 - name: "SCORED | 5.2.4 | PATCH | Ensure SSH LogLevel is set to INFO"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^LogLevel'
@@ -235,7 +235,7 @@
       - rule_5.2.4
 
 - name: "SCORED | 5.2.5 | PATCH | Ensure SSH X11 forwarding is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^X11Forwarding'
@@ -250,7 +250,7 @@
       - rule_5.2.5
 
 - name: "SCORED | 5.2.6 | PATCH | Ensure SSH MaxAuthTries is set to 4 or less"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^(#)?MaxAuthTries \d'
@@ -265,7 +265,7 @@
       - rule_5.2.6
 
 - name: "SCORED | 5.2.7 | PATCH | Ensure SSH IgnoreRhosts is enabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^IgnoreRhosts'
@@ -280,7 +280,7 @@
       - rule_5.2.7
 
 - name: "SCORED | 5.2.8 | PATCH | Ensure SSH HostbasedAuthentication is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^HostbasedAuthentication'
@@ -295,7 +295,7 @@
       - rule_5.2.8
 
 - name: "SCORED | 5.2.9 | PATCH | Ensure SSH root login is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^PermitRootLogin'
@@ -310,7 +310,7 @@
       - rule_5.2.9
 
 - name: "SCORED | 5.2.10 | PATCH | Ensure SSH PermitEmptyPasswords is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^PermitEmptyPasswords'
@@ -325,7 +325,7 @@
       - rule_5.2.10
 
 - name: "SCORED | 5.2.11 | PATCH | Ensure SSH PermitUserEnvironment is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^PermitUserEnvironment'
@@ -340,7 +340,7 @@
       - rule_5.2.11
 
 - name: "SCORED | 5.2.12 | PATCH | Ensure only strong Ciphers are used"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^Ciphers'
@@ -355,7 +355,7 @@
       - rule_5.2.12
 
 - name: "SCORED | 5.2.13 | PATCH | Ensure only approved MAC algorithms are used"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^MACs'
@@ -370,7 +370,7 @@
       - rule_5.2.13
 
 - name: "SCORED | 5.2.14 | PATCH | Ensure only strong Key Exchange algorithms are used"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^KexAlgorithms'
@@ -387,14 +387,14 @@
 - name: "SCORED | 5.2.15 | PATCH | Ensure SSH Idle Timeout Interval is configured"
   block:
       - name: "SCORED | 5.2.15 | PATCH | Ensure SSH Idle Timeout Interval is configured"
-        lineinfile:
+        ansible.builtin.lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
             regexp: '^ClientAliveInterval'
             line: "ClientAliveInterval {{ ubuntu2004cis_sshd['clientaliveinterval'] }}"
 
       - name: "SCORED | 5.2.15 | PATCH | Ensure SSH ClientAliveCountMax set to <= 3"
-        lineinfile:
+        ansible.builtin.lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
             regexp: '^ClientAliveCountMax'
@@ -409,7 +409,7 @@
       - rule_5.2.15
 
 - name: "SCORED | 5.2.16 | PATCH | Ensure SSH LoginGraceTime is set to one minute or less"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^LoginGraceTime'
@@ -426,7 +426,7 @@
 - name: "SCORED | 5.2.17 | PATCH | Ensure SSH access is limited"
   block:
       - name: "SCORED | 5.2.17 | PATCH | Ensure SSH access is limited | allowusers"
-        lineinfile:
+        ansible.builtin.lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
             regexp: '^AllowUsers'
@@ -435,7 +435,7 @@
             - "ubuntu2004cis_sshd['allowusers']|default('')"
 
       - name: "SCORED | 5.2.17 | PATCH | Ensure SSH access is limited | allowgroups"
-        lineinfile:
+        ansible.builtin.lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
             regexp: '^AllowGroups'
@@ -444,7 +444,7 @@
             - "ubuntu2004cis_sshd['allowgroups']|default('')"
 
       - name: "SCORED | 5.2.17 | PATCH | Ensure SSH access is limited | denyusers"
-        lineinfile:
+        ansible.builtin.lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
             regexp: '^DenyUsers'
@@ -453,7 +453,7 @@
             - "ubuntu2004cis_sshd['denyusers']|default('')"
 
       - name: "SCORED | 5.2.17 | PATCH | Ensure SSH access is limited | denygroups"
-        lineinfile:
+        ansible.builtin.lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
             regexp: '^DenyGroups'
@@ -470,7 +470,7 @@
       - rule_5.2.17
 
 - name: "SCORED | 5.2.18 | PATCH | Ensure SSH warning banner is configured"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^Banner'
@@ -485,7 +485,7 @@
       - rule_5.2.18
 
 - name: "SCORED | 5.2.19 | PATCH | Ensure SSH PAM is enabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^UsePAM'
@@ -500,7 +500,7 @@
       - rule_5.2.19
 
 - name: "SCORED | 5.2.20 | PATCH | Ensure SSH AllowTcpForwarding is disabled"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^AllowTcpForwarding'
@@ -515,7 +515,7 @@
       - rule_5.2.20
 
 - name: "SCORED | 5.2.21 | PATCH | Ensure SSH MaxStartups is configured"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^MaxStartups'
@@ -530,7 +530,7 @@
       - rule_5.2.21
 
 - name: "SCORED | 5.2.22 | PATCH | Ensure SSH MaxSessions is set to 4 or less "
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^MaxSessions'
@@ -549,13 +549,13 @@
 - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
   block:
       - name: "SCORED | 5.3.1 | PATCH | Ensure lipam-pwquality is installed"
-        apt:
+        ansible.builtin.apt:
             name: libpam-pwquality
             state: present
             install_recommends: false
 
       - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
-        lineinfile:
+        ansible.builtin.lineinfile:
             state: present
             create: yes
             dest: /etc/security/pwquality.conf
@@ -574,12 +574,12 @@
 - name: "SCORED | 5.3.2 | PATCH | Ensure lockout for failed password attempts is configured"
   block:
       - name: "SCORED | 5.3.2 | PATCH |  Ensure lockout for failed password attempts is configured - /etc/pam.d/common-account"
-        lineinfile:
+        ansible.builtin.lineinfile:
             dest: /etc/pam.d/common-account
             line: 'account required pam_tally2.so'
 
       - name: "SCORED | 5.3.2 | PATCH |  Ensure lockout for failed password attempts is configured - /etc/pam.d/common-auth"
-        lineinfile:
+        ansible.builtin.lineinfile:
             dest: /etc/pam.d/common-auth
             line: 'auth required pam_tally2.so onerr=fail audit silent deny=5 unlock_time=900'
   when:
@@ -591,7 +591,7 @@
       - rule_5.3.2
 
 - name: "SCORED | 5.3.3 | PATCH | Ensure password reuse is limited"
-  lineinfile:
+  ansible.builtin.lineinfile:
       dest: /etc/pam.d/common-password
       line: "password required pam_pwhistory.so remember={{ ubuntu2004cis_pass['history'] }}"
   when:
@@ -603,7 +603,7 @@
       - rule_5.3.3
 
 - name: "SCORED | 5.3.4 | PATCH | Ensure password hashing algorithm is SHA-512"
-  command: authconfig --passalgo=sha512 --update
+  ansible.builtin.command: authconfig --passalgo=sha512 --update
   changed_when: false
   failed_when: false
   when:
@@ -615,7 +615,7 @@
       - rule_5.3.4
 
 - name: "SCORED | 5.4.1.1 | PATCH | Ensure password expiration is 365 days or less"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_MAX_DAYS'
@@ -629,7 +629,7 @@
       - rule_5.4.1.1
 
 - name: "SCORED | 5.4.1.2 | PATCH | Ensure minimum days between password changes is configured"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_MIN_DAYS'
@@ -643,7 +643,7 @@
       - rule_5.4.1.2
 
 - name: "SCORED | 5.4.1.3 | PATCH | Ensure password expiration warning days is 7 or more"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_WARN_AGE'
@@ -657,11 +657,11 @@
       - rule_5.4.1.3
 
 - name: "SCORED | 5.4.1.4 | PATCH | Ensure inactive password lock is 30 days or less"
-  lineinfile:
-    state: present
-    dest: /etc/default/useradd
-    regexp: '^INACTIVE'
-    line: "INACTIVE={{ ubuntu2004cis_pass['inactive'] }}"
+  ansible.builtin.lineinfile:
+      state: present
+      dest: /etc/default/useradd
+      regexp: '^INACTIVE'
+      line: "INACTIVE={{ ubuntu2004cis_pass['inactive'] }}"
   when:
       - ubuntu2004cis_rule_5_4_1_4
   tags:
@@ -673,7 +673,7 @@
 - name: "SCORED | 5.4.1.5 | PATCH | Ensure all users last password change date is in the past"
   block:
       - name: "SCORED | 5.4.1.5 | PATCH | Ensure all users last password change date is in the past| lock users"
-        user:
+        ansible.builtin.user:
             name: "{{ item }}"
             password_lock: yes"
         loop: "{{ users_password_change_date_in_future.stdout_lines }}"
@@ -681,7 +681,7 @@
             - ubuntu2004cis_password_change_date_in_future_action == 'lock'
 
       - name: "SCORED | 5.4.1.5 | PATCH | Ensure all users last password change date is in the past| expire users"
-        user:
+        ansible.builtin.user:
             name: "{{ item }}"
             expires: 1422403387
         loop: "{{ users_password_change_date_in_future.stdout_lines }}"
@@ -697,7 +697,7 @@
       - rule_5.4.1.5
 
 - name: "SCORED | 5.4.2 | PATCH | Ensure system accounts are secured"
-  command: >
+  ansible.builtin.command: >
     for user in `awk -F: '($3 < 1000) {print $1 }' /etc/passwd`; do
      if [ $user != "root" ]; then
       usermod -L $user
@@ -719,7 +719,7 @@
       - scored
 
 - name: "SCORED | 5.4.3 | PATCH | Ensure default group for the root account is GID 0"
-  command: usermod -g 0 root
+  ansible.builtin.command: usermod -g 0 root
   changed_when: false
   failed_when: false
   when:
@@ -732,29 +732,29 @@
 
 - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive"
   block:
-    - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/bash.bashrc"
-      lineinfile:
-        state: present
-        dest: /etc/bash.bashrc
-        create: true
-        regexp: '^umask '
-        line: 'umask 027'
+      - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/bash.bashrc"
+        ansible.builtin.lineinfile:
+            state: present
+            dest: /etc/bash.bashrc
+            create: true
+            regexp: '^umask '
+            line: 'umask 027'
 
-    - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/profile"
-      lineinfile:
-        state: present
-        dest: /etc/profile
-        create: true
-        regexp: '^umask '
-        line: 'umask 027'
+      - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/profile"
+        ansible.builtin.lineinfile:
+            state: present
+            dest: /etc/profile
+            create: true
+            regexp: '^umask '
+            line: 'umask 027'
 
-    - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/profile.d/99-umask.sh"
-      lineinfile:
-        state: present
-        dest: /etc/profile.d/99-umask.sh
-        create: true
-        regexp: '^umask '
-        line: 'umask 027'
+      - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive - /etc/profile.d/99-umask.sh"
+        ansible.builtin.lineinfile:
+            state: present
+            dest: /etc/profile.d/99-umask.sh
+            create: true
+            regexp: '^umask '
+            line: 'umask 027'
   when:
       - ubuntu2004cis_rule_5_4_4
   tags:
@@ -765,39 +765,39 @@
 
 - name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less"
   block:
-    - name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less - /etc/bash.bashrc"
-      lineinfile:
-        state: present
-        dest: /etc/bash.bashrc
-        create: true
-        regexp: '^TMOUT='
-        line: "TMOUT={{ ubuntu2004cis_shell_timeout }}"
+      - name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less - /etc/bash.bashrc"
+        ansible.builtin.lineinfile:
+            state: present
+            dest: /etc/bash.bashrc
+            create: true
+            regexp: '^TMOUT='
+            line: "TMOUT={{ ubuntu2004cis_shell_timeout }}"
 
-    - name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less - /etc/profile"
-      lineinfile:
-        state: present
-        dest: /etc/profile
-        create: true
-        regexp: '^TMOUT='
-        line: "TMOUT={{ ubuntu2004cis_shell_timeout }}"
+      - name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less - /etc/profile"
+        ansible.builtin.lineinfile:
+            state: present
+            dest: /etc/profile
+            create: true
+            regexp: '^TMOUT='
+            line: "TMOUT={{ ubuntu2004cis_shell_timeout }}"
 
-    - name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less - /etc/profile.d/99-tmout.sh"
-      lineinfile:
-        state: present
-        dest: /etc/profile.d/99-tmout.sh
-        create: true
-        regexp: '^TMOUT='
-        line: "TMOUT={{ ubuntu2004cis_shell_timeout }}"
+      - name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less - /etc/profile.d/99-tmout.sh"
+        ansible.builtin.lineinfile:
+            state: present
+            dest: /etc/profile.d/99-tmout.sh
+            create: true
+            regexp: '^TMOUT='
+            line: "TMOUT={{ ubuntu2004cis_shell_timeout }}"
   when:
-    - ubuntu2004cis_rule_5_4_5
+      - ubuntu2004cis_rule_5_4_5
   tags:
-    - level1
-    - patch
-    - rule_5.4.5
-    - scored
+      - level1
+      - patch
+      - rule_5.4.5
+      - scored
 
 - name: "NOTSCORED | 5.5 | PATCH | Ensure root login is restricted to system console"
-  command: /bin/true
+  ansible.builtin.command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_5_5
@@ -809,7 +809,7 @@
       - notimplemented
 
 - name: "SCORED | 5.6 | PATCH | Ensure access to the su command is restricted"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/pam.d/su
       regexp: '^(#)?auth\s+required\s+pam_wheel\.so'
@@ -823,7 +823,7 @@
       - scored
 
 - name: "SCORED | 5.6 | PATCH | Ensure access to the su command is restricted - sudo group contains root"
-  user:
+  ansible.buitlin.user:
       name: root
       groups: sudo
   when:
