@@ -823,7 +823,7 @@
       - scored
 
 - name: "SCORED | 5.6 | PATCH | Ensure access to the su command is restricted - sudo group contains root"
-  ansible.buitlin.user:
+  ansible.builtin.user:
       name: root
       groups: sudo
   when:
