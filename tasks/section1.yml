@@ -923,7 +923,7 @@
 - name: "SCORED | 1.7.1.2 | PATCH | Ensure AppArmor is enabled in the bootloader configuration"
   block:
       - name: "SCORED | 1.7.1.2 | PATCH | Ensure AppArmor is enabled in the bootloader configuration"
-        ansible.buitin.replace:
+        ansible.builtin.replace:
             dest: /etc/default/grub
             regexp: '^(GRUB_CMDLINE_LINUX=(?!.*apparmor)\"[^\"]*)(\".*)'
             replace: '\1 apparmor=1 security=apparmor\2'
