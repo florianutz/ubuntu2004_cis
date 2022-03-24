@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: "${{ github.repository }}"
-          
+
       - name: Molecule
         uses: gofrolist/molecule-action@v2
         with:
@@ -24,3 +24,12 @@ jobs:
           #molecule_working_dir: thedatabaseme/cookbooks/ansible/molecule/molecule_test_role
         env:
           ANSIBLE_FORCE_COLOR: '1'
+  release:
+    needs:
+      - molecule
+    runs-on: ubuntu-latest
+    steps:
+      - name: galaxy
+        uses: robertdebock/galaxy-action@1.1.0
+        with:
+          galaxy_api_key: ${{ secrets.galaxy_api_key }}

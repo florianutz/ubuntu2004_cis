@@ -1,6 +1,6 @@
 ---
 - name: "SCORED | 4.1.1.1 | PATCH | Ensure auditd is installed"
-  apt:
+  ansible.builtin.apt:
       name: audispd-plugins
       state: present
       install_recommends: false
@@ -15,7 +15,7 @@
       - rule_4.1.1.1
 
 - name: "SCORED | 4.1.1.2 | PATCH | Ensure auditd service is enabled"
-  service:
+  ansible.builtin.service:
       name: auditd
       state: started
       enabled: true
@@ -30,7 +30,7 @@
       - rule_4.1.1.2
 
 - name: "SCORED | 4.1.1.3 | PATCH | Ensure auditing for processes that start prior to auditd is enabled"
-  replace:
+  ansible.builtin.replace:
       dest: /etc/default/grub
       regexp: '^(GRUB_CMDLINE_LINUX=(?!.*audit)\"[^\"]*)(\".*)'
       replace: '\1 audit=1\2'
@@ -46,7 +46,7 @@
       - rule_4.1.1.3
 
 - name: "SCORED | 4.1.1.4 | PATCH | Ensure audit_backlog_limit is sufficient"
-  replace:
+  ansible.builtin.replace:
       dest: /etc/default/grub
       regexp: '^(GRUB_CMDLINE_LINUX=(?!.*audit_backlog_limit)\"[^\"]*)(\".*)'
       replace: '\1 audit_backlog_limit={{ ubuntu2004cis_auditd.backlog_limit }}\2'
@@ -63,7 +63,7 @@
       - rule_4.1.1.4
 
 - name: "SCORED | 4.1.2.1 | PATCH | Ensure audit log storage size is configured"
-  lineinfile:
+  ansible.builtin.lineinfile:
       dest: /etc/audit/auditd.conf
       regexp: "^max_log_file( |=)"
       line: "max_log_file = {{ ubuntu2004cis_auditd.max_audit_log_file_size }}"
@@ -81,7 +81,7 @@
       - rule_4.1.2.1
 
 - name: "SCORED | 4.1.2.2 | PATCH | Ensure audit logs are not automatically deleted"
-  lineinfile:
+  ansible.builtin.lineinfile:
       dest: /etc/audit/auditd.conf
       regexp: "^max_log_file_action"
       line: "max_log_file_action = {{ ubuntu2004cis_auditd['max_log_file_action'] }}"
@@ -101,7 +101,7 @@
 - name: "SCORED | 4.1.2.3 | PATCH | Ensure system is disabled when audit logs are full"
   block:
       - name: "SCORED | 4.1.2.3 | PATCH | Ensure system is disabled when audit logs are full | admin_space_left_action"
-        lineinfile:
+        ansible.builtin.lineinfile:
             dest: /etc/audit/auditd.conf
             regexp: "^admin_space_left_action"
             line: "admin_space_left_action = {{ ubuntu2004cis_auditd['admin_space_left_action'] }}"
@@ -111,7 +111,7 @@
             - restart auditd
 
       - name: "SCORED | 4.1.2.3 | PATCH | Ensure system is disabled when audit logs are full | space_left_action"
-        lineinfile:
+        ansible.builtin.lineinfile:
             dest: /etc/audit/auditd.conf
             regexp: "^space_left_action"
             line: "space_left_action = email"
@@ -121,7 +121,7 @@
             - restart auditd
 
       - name: "SCORED | 4.1.2.3 | PATCH | Ensure system is disabled when audit logs are full | action_mail_acct"
-        lineinfile:
+        ansible.builtin.lineinfile:
             dest: /etc/audit/auditd.conf
             regexp: "^action_mail_acct"
             line: "action_mail_acct = root"
@@ -139,7 +139,7 @@
       - rule_4.1.2.3
 
 - name: "SCORED | 4.1.3 | PATCH | Ensure events that modify date and time information are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_3.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_3.rules
       owner: root
@@ -158,7 +158,7 @@
       - rule_4.1.3
 
 - name: "SCORED | 4.1.4 | PATCH | Ensure events that modify user/group information are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_4.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_4.rules
       owner: root
@@ -177,7 +177,7 @@
       - rule_4.1.4
 
 - name: "SCORED | 4.1.5 | PATCH | Ensure events that modify the system's network environment are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_5.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_5.rules
       owner: root
@@ -196,7 +196,7 @@
       - rule_4.1.5
 
 - name: "SCORED | 4.1.6 | PATCH | Ensure events that modify the system's Mandatory Access Controls are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_6.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_6.rules
       owner: root
@@ -215,7 +215,7 @@
       - rule_4.1.6
 
 - name: "SCORED | 4.1.7 | PATCH | Ensure login and logout events are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_7.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_7.rules
       owner: root
@@ -234,7 +234,7 @@
       - rule_4.1.7
 
 - name: "SCORED | 4.1.8 | PATCH | Ensure session initiation information is collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_8.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_8.rules
       owner: root
@@ -253,7 +253,7 @@
       - rule_4.1.8
 
 - name: "SCORED | 4.1.9 | PATCH | Ensure discretionary access control permission modification events are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_9.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_9.rules
       owner: root
@@ -272,7 +272,7 @@
       - rule_4.1.9
 
 - name: "SCORED | 4.1.10 | PATCH | Ensure unsuccessful unauthorized file access attempts are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_10.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_10.rules
       owner: root
@@ -294,13 +294,13 @@
   block:
 
       - name: "SCORED | 4.1.11 | PATCH | Get list of setuid/setguid binaries"
-        shell: for i in  $(df | grep '^/dev' | awk '{ print $NF }'); do find $i -xdev -type f -perm -4000 -o -type f -perm -2000 2>/dev/null; done
+        ansible.builtin.shell: for i in  $(df | grep '^/dev' | awk '{ print $NF }'); do find $i -xdev -type f -perm -4000 -o -type f -perm -2000 2>/dev/null; done
         register: priv_procs
         changed_when: false
         check_mode: false
 
       - name: "SCORED | 4.1.11 | PATCH | Ensure use of privileged commands is collected"
-        template:
+        ansible.builtin.template:
             src: audit/ubuntu2004cis_rule_4_1_11.rules.j2
             dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_11.rules
             owner: root
@@ -319,7 +319,7 @@
       - rule_4.1.11
 
 - name: "SCORED | 4.1.12 | PATCH | Ensure successful file system mounts are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_12.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_12.rules
       owner: root
@@ -338,7 +338,7 @@
       - rule_4.1.12
 
 - name: "SCORED | 4.1.13 | PATCH | Ensure file deletion events by users are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_13.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_13.rules
       owner: root
@@ -357,7 +357,7 @@
       - rule_4.1.13
 
 - name: "SCORED | 4.1.14 | PATCH | Ensure changes to system administration scope (sudoers) is collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_14.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_14.rules
       owner: root
@@ -376,7 +376,7 @@
       - rule_4.1.14
 
 - name: "SCORED | 4.1.15 | PATCH | Ensure system administrator actions (sudolog) are collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_15.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_15.rules
       owner: root
@@ -395,7 +395,7 @@
       - rule_4.1.15
 
 - name: "SCORED | 4.1.16 | PATCH | Ensure kernel module loading and unloading is collected"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_16.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_16.rules
       owner: root
@@ -414,7 +414,7 @@
       - rule_4.1.16
 
 - name: "SCORED | 4.1.17 | PATCH | Ensure the audit configuration is immutable"
-  template:
+  ansible.builtin.template:
       src: audit/ubuntu2004cis_rule_4_1_17.rules.j2
       dest: /etc/audit/rules.d/ubuntu2004cis_rule_4_1_17.rules
       owner: root
@@ -433,7 +433,7 @@
       - rule_4.1.17
 
 - name: "SCORED | 4.2.1.1 | PATCH | Ensure rsyslog or is installed"
-  apt:
+  ansible.builtin.apt:
       name: rsyslog
       state: present
       install_recommends: false
@@ -448,7 +448,7 @@
       - rule_4.2.1.1
 
 - name: "SCORED | 4.2.1.2 | PATCH | Ensure rsyslog Service is enabled"
-  service:
+  ansible.builtin.service:
       name: rsyslog
       enabled: yes
   changed_when: false
@@ -463,7 +463,7 @@
       - rule_4.2.1.2
 
 - name: "NOTSCORED | 4.2.1.3 | PATCH | Ensure logging is configured"
-  command: /bin/true
+  ansible.builtin.command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_4_2_1_3
@@ -476,7 +476,7 @@
       - notimplemented
 
 - name: "SCORED | 4.2.1.4 | PATCH | Ensure rsyslog default file permissions configured"
-  lineinfile:
+  ansible.builtin.lineinfile:
       dest: /etc/rsyslog.conf
       regexp: '^\$FileCreateMode'
       line: '$FileCreateMode 0640'
@@ -490,7 +490,7 @@
       - rule_4.2.1.4
 
 - name: "SCORED | 4.2.1.5 | PATCH | Ensure rsyslog is configured to send logs to a remote log host"
-  command: /bin/true
+  ansible.builtin.command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_4_2_1_5
@@ -503,7 +503,7 @@
       - notimplemented
 
 - name: "NOTSCORED | 4.2.1.6 | PATCH | Ensure remote rsyslog messages are only accepted on designated log hosts."
-  command: /bin/true
+  ansible.builtin.command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_4_2_1_6
@@ -516,15 +516,15 @@
       - notimplemented
 
 - name: "SCORED | 4.2.2.1 | PATCH | Ensure journald is configured to send logs to rsyslog"
-  lineinfile:
-    dest: /etc/systemd/journald.conf
-    regexp: "(#)?ForwardToSyslog=(yes|no)"
-    line: ForwardToSyslog=yes
+  ansible.builtin.lineinfile:
+      dest: /etc/systemd/journald.conf
+      regexp: "(#)?ForwardToSyslog=(yes|no)"
+      line: ForwardToSyslog=yes
   changed_when: false
   when:
       - ubuntu2004cis_rule_4_2_2_1
   notify:
-    - restart journald
+      - restart journald
   tags:
       - level1
       - scored
@@ -533,14 +533,14 @@
       - rule_4.2.2.1
 
 - name: "SCORED | 4.2.2.2 | PATCH | Ensure journald is configured to compress large log files"
-  lineinfile:
-    dest: /etc/systemd/journald.conf
-    regexp: "(#)?Compress=(yes|no)"
-    line: Compress=yes
+  ansible.builtin.lineinfile:
+      dest: /etc/systemd/journald.conf
+      regexp: "(#)?Compress=(yes|no)"
+      line: Compress=yes
   when:
       - ubuntu2004cis_rule_4_2_2_2
   notify:
-    - restart journald
+      - restart journald
   tags:
       - level1
       - scored
@@ -549,14 +549,14 @@
       - rule_4.2.2.2
 
 - name: "SCORED | 4.2.2.3 | PATCH | Ensure journald is configured to write logfiles to persistent disk"
-  lineinfile:
-    dest: /etc/systemd/journald.conf
-    regexp: "(#)?Storage=(auto|persistent)"
-    line: Storage=persistent
+  ansible.builtin.lineinfile:
+      dest: /etc/systemd/journald.conf
+      regexp: "(#)?Storage=(auto|persistent)"
+      line: Storage=persistent
   when:
       - ubuntu2004cis_rule_4_2_2_3
   notify:
-    - restart journald
+      - restart journald
   tags:
       - level1
       - scored
@@ -565,7 +565,7 @@
       - rule_4.2.2.3
 
 - name: "SCORED | 4.2.3 | PATCH | Ensure permissions on all logfiles are configured"
-  command: find /var/log -type f -exec chmod g-wx,o-rwx {} +
+  ansible.builtin.command: find /var/log -type f -exec chmod g-wx,o-rwx {} +
   changed_when: false
   failed_when: false
   when:
@@ -580,18 +580,18 @@
 - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate is configured"
   block:
       - name: "NOTSCORED | 4.3 | PATCH | Register logrotate.d files"
-        find:
+        ansible.builtin.find:
             paths: /etc/logrotate.d/
         register: log_rotates
 
       - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate.conf exists"
-        file:
+        ansible.builtin.file:
             path: /etc/logrotate.conf
             state: touch
         changed_when: false
 
       - name: "NOTSCORED | 4.3 | PATCH | Ensure logrotate is configured"
-        replace:
+        ansible.builtin.replace:
             path: "{{ item.path }}"
             regexp: '^(\s*)(daily|weekly|monthly|yearly)$'
             replace: "\\1{{ ubuntu2004cis_logrotate }}"
@@ -608,7 +608,7 @@
       - rule_4.3
 
 - name: "SCORED | 4.4 | PATCH | Ensure logrotate assigns appropriate permissions"
-  lineinfile:
+  ansible.builtin.lineinfile:
       state: present
       dest: /etc/logrotate.conf
       regexp: '^create'
