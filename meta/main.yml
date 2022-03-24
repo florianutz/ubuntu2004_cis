@@ -4,7 +4,7 @@ galaxy_info:
   description: "Ansible role to apply Ubuntu 20.04 CIS Baseline"
   company: "none"
   license: MIT
-  min_ansible_version: 2.6
+  min_ansible_version: 2.10
   role_name: ubuntu2004_cis
   namespace: florianutz
 
