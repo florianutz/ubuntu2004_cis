@@ -2,12 +2,12 @@
 - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram,chargen-stream"
   block:
       - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/chargen-dgram
         register: chargen_dgram_service
 
       - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-dgram"
-        ansible.builtin.service:
+        service:
             name: chargen-dgram
             enabled: no
         notify: restart xinetd
@@ -15,12 +15,12 @@
             - chargen_dgram_service.stat.exists
 
       - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-stream"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/chargen-stream
         register: chargen_stream_service
 
       - name: "SCORED | 2.1.1 | PATCH | Ensure chargen services are not enabled | chargen-stream"
-        ansible.builtin.service:
+        service:
             name: chargen-stream
             enabled: no
         notify: restart xinetd
@@ -39,12 +39,12 @@
 - name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-dgram,daytime-stream"
   block:
       - name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-dgram"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/daytime-dgram
         register: daytime_dgram_service
 
       - name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-dgram"
-        ansible.builtin.service:
+        service:
             name: daytime-dgram
             enabled: no
         notify: restart xinetd
@@ -52,12 +52,12 @@
             - daytime_dgram_service.stat.exists
 
       - name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-stream"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/daytime-stream
         register: daytime_stream_service
 
       - name: "SCORED | 2.1.2 | PATCH | Ensure daytime services are not enabled | daytime-stream"
-        ansible.builtin.service:
+        service:
             name: daytime-stream
             enabled: no
         notify: restart xinetd
@@ -75,12 +75,12 @@
 - name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-dgram,discard-stream"
   block:
       - name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-dgram"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/discard-dgram
         register: discard_dgram_service
 
       - name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-dgram"
-        ansible.builtin.service:
+        service:
             name: discard-dgram
             enabled: no
         notify: restart xinetd
@@ -88,12 +88,12 @@
             - discard_dgram_service.stat.exists
 
       - name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-stream"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/discard-stream
         register: discard_stream_service
 
       - name: "SCORED | 2.1.3 | PATCH | Ensure discard services are not enabled | discard-stream"
-        ansible.builtin.service:
+        service:
             name: discard-stream
             enabled: no
         notify: restart xinetd
@@ -111,12 +111,12 @@
 - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-dgram,echo-stream"
   block:
       - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-dgram"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/echo-dgram
         register: echo_dgram_service
 
       - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-dgram"
-        ansible.builtin.service:
+        service:
             name: echo-dgram
             enabled: no
         notify: restart xinetd
@@ -124,12 +124,12 @@
             - echo_dgram_service.stat.exists
 
       - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-stream"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/echo-stream
         register: echo_stream_service
 
       - name: "SCORED | 2.1.4 | PATCH | Ensure echo services are not enabled | echo-stream"
-        ansible.builtin.service:
+        service:
             name: echo-stream
             enabled: no
         notify: restart xinetd
@@ -147,12 +147,12 @@
 - name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-dgram,time-stream"
   block:
       - name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-dgram"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/time-dgram
         register: time_dgram_service
 
       - name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-dgram"
-        ansible.builtin.service:
+        service:
             name: time-dgram
             enabled: no
         notify: restart xinetd
@@ -160,12 +160,12 @@
             - time_dgram_service.stat.exists
 
       - name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-stream"
-        ansible.builtin.stat:
+        stat:
             path: /etc/xinetd.d/time-stream
         register: time_stream_service
 
       - name: "SCORED | 2.1.5 | PATCH | Ensure time services are not enabled | time-stream"
-        ansible.builtin.service:
+        service:
             name: time-stream
             enabled: no
         notify: restart xinetd
@@ -183,7 +183,7 @@
 - name: "SCORED | 2.1.6 | PATCH | Ensure rsh server is not enabled | rsh, rlogin, rexec"
   block:
       - name: "SCORED | 2.1.6 | PATCH | Ensure rsh server is not enabled | rsh"
-        ansible.builtin.service:
+        service:
             name: rsh.socket
             state: stopped
             enabled: false
@@ -193,7 +193,7 @@
             - ubuntu2004cis_rule_2_1_6
 
       - name: "SCORED | 2.1.6 | PATCH | Ensure rsh server is not enabled | rlogin"
-        ansible.builtin.service:
+        service:
             name: rlogin.socket
             state: stopped
             enabled: false
@@ -203,7 +203,7 @@
             - ubuntu2004cis_rule_2_1_6
 
       - name: "SCORED | 2.1.6 | PATCH | Ensure rsh server is not enabled | rexec"
-        ansible.builtin.service:
+        service:
             name: rexec.socket
             state: stopped
             enabled: false
@@ -218,7 +218,7 @@
       - rule_2.1.6
 
 - name: "SCORED | 2.1.7 | PATCH | Ensure talk server is not enabled"
-  ansible.builtin.service:
+  service:
       name: ntalk
       state: stopped
       enabled: false
@@ -233,7 +233,7 @@
       - rule_2.1.7
 
 - name: "SCORED | 2.1.8 | PATCH | Ensure telnet server is not enabled"
-  ansible.builtin.service:
+  service:
       name: telnetd
       state: stopped
       enabled: false
@@ -248,7 +248,7 @@
       - rule_2.1.8
 
 - name: "SCORED | 2.1.9 | PATCH | Ensure tftp server is not enabled"
-  ansible.builtin.service:
+  service:
       name: tftpd-hpa
       state: stopped
       enabled: no
@@ -263,7 +263,7 @@
       - rule_2.1.9
 
 - name: "SCORED | 2.1.10 | PATCH | Ensure xinetd is not enabled"
-  ansible.builtin.service:
+  service:
       name: xinetd
       state: stopped
       enabled: false
@@ -278,7 +278,7 @@
       - rule_2.1.10
 
 - name: "SCORED | 2.1.11 | PATCH | Ensure openbsd-inetd is not installed"
-  ansible.builtin.apt:
+  apt:
       name: openbsd-inetd
       state: absent
   when:
@@ -293,19 +293,19 @@
 - name: "SCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use"
   block:
       - name: "SCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service install"
-        ansible.builtin.apt:
+        apt:
             name: "{{ ubuntu2004cis_time_synchronization }}"
             state: present
             install_recommends: false
 
       - name: "SCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service start"
-        ansible.builtin.service:
+        service:
             name: "{{ ubuntu2004cis_time_synchronization }}"
             state: started
             enabled: true
 
       - name: "SCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service stop ntp"
-        ansible.builtin.service:
+        service:
             name: "{{ ntp_service[ansible_os_family] }}"
             state: stopped
             enabled: false
@@ -314,7 +314,7 @@
             - ntpd_service_status.stdout == "loaded"
 
       - name: "SCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - service stop chrony"
-        ansible.builtin.service:
+        service:
             name: chronyd
             state: stopped
             enabled: false
@@ -324,7 +324,7 @@
             - chronyd_service_status.stdout == "loaded"
 
       - name: "SCORED | 2.2.1.1 | PATCH | Ensure time synchronization is in use - mask systemd-timesyncd"
-        ansible.builtin.systemd:
+        systemd:
             name: systemd-timesyncd
             enabled: no
             masked: yes
@@ -343,7 +343,7 @@
       - rule_2.2.1.1
 
 - name: "NOTSCORED | 2.2.1.2 | PATCH | Ensure systemd-timesyncd is configured"
-  ansible.builtin.command: /bin/true
+  command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_2_2_1_2
@@ -357,7 +357,7 @@
 - name: "SCORED | 2.2.1.3 | PATCH | Ensure chrony is configured"
   block:
       - name: "SCORED | 2.2.1.3 | PATCH | Ensure chrony is configured | create chrony.conf"
-        ansible.builtin.template:
+        template:
             src: chrony.conf.j2
             dest: "{{ chrony_config_file[ansible_os_family] }}"
             owner: root
@@ -365,7 +365,7 @@
             mode: 0644
 
       - name: "SCORED | 2.2.1.3 | PATCH | Ensure chrony is configured | modify /etc/sysconfig/chronyd"
-        ansible.builtin.lineinfile:
+        lineinfile:
             dest: /etc/sysconfig/chronyd
             regexp: "^(#)?OPTIONS"
             line: "OPTIONS=\"-u {{ chrony_system_user[ansible_os_family] }}\""
@@ -384,7 +384,7 @@
 - name: "SCORED | 2.2.1.4 | PATCH | Ensure ntp is configured"
   block:
       - name: "SCORED | 2.2.1.4 | PATCH | Ensure ntp is configured | modify /etc/ntp.conf"
-        ansible.builtin.template:
+        template:
             src: ntp.conf.j2
             dest: /etc/ntp.conf
             owner: root
@@ -392,7 +392,7 @@
             mode: 0644
 
       - name: "SCORED | 2.2.1.4 | PATCH | Ensure ntp is configured | modify /etc/init.d/ntp"
-        ansible.builtin.lineinfile:
+        lineinfile:
             dest: /etc/init.d/ntp
             regexp: "^RUNASUSER"
             line: "RUNASUSER=ntp"
@@ -407,7 +407,7 @@
       - rule_2.2.1.4
 
 - name: "SCORED | 2.2.2 | PATCH | Ensure X Window System is not installed"
-  ansible.builtin.apt:
+  apt:
       name:
           - "xorg"
           - "x11*"
@@ -423,7 +423,7 @@
       - rule_2.2.2
 
 - name: "SCORED | 2.2.3 | PATCH | Ensure Avahi Server is not enabled"
-  ansible.builtin.service:
+  service:
       name: avahi-daemon
       state: stopped
       enabled: false
@@ -440,7 +440,7 @@
       - rule_2.2.3
 
 - name: "SCORED | 2.2.4 | PATCH | Ensure CUPS is not enabled"
-  ansible.builtin.service:
+  service:
       name: cups
       state: stopped
       enabled: false
@@ -457,7 +457,7 @@
       - rule_2.2.4
 
 - name: "SCORED | 2.2.5 | PATCH | Ensure DHCP Server is not enabled"
-  ansible.builtin.service:
+  service:
       name: dhcpd
       state: stopped
       enabled: false
@@ -474,7 +474,7 @@
       - rule_2.2.5
 
 - name: "SCORED | 2.2.6 | PATCH | Ensure LDAP server is not enabled"
-  ansible.builtin.service:
+  service:
       name: slapd
       state: stopped
       enabled: false
@@ -491,7 +491,7 @@
       - rule_2.2.6
 
 - name: "SCORED | 2.2.7 | PATCH | Ensure NFS and RPC are not enabled"
-  ansible.builtin.service:
+  service:
       name: nfs
       state: stopped
       enabled: false
@@ -509,7 +509,7 @@
       - rule_2.2.7
 
 - name: "SCORED | 2.2.7 | PATCH | Ensure RPC is not enabled"
-  ansible.builtin.service:
+  service:
       name: rpcbind
       state: stopped
       enabled: false
@@ -527,7 +527,7 @@
       - rule_2.2.7
 
 - name: "SCORED | 2.2.8 | PATCH | Ensure DNS Server is not enabled"
-  ansible.builtin.service:
+  service:
       name: named
       state: stopped
       enabled: false
@@ -544,7 +544,7 @@
       - rule_2.2.8
 
 - name: "SCORED | 2.2.9 | PATCH | Ensure FTP Server is not enabled"
-  ansible.builtin.service:
+  service:
       name: vsftpd
       state: stopped
       enabled: false
@@ -561,7 +561,7 @@
       - rule_2.2.9
 
 - name: "SCORED | 2.2.10 | PATCH | Ensure HTTP server is not enabled"
-  ansible.builtin.service:
+  service:
       name: apache2
       state: stopped
       enabled: false
@@ -578,7 +578,7 @@
       - rule_2.2.10
 
 - name: "SCORED | 2.2.11 | PATCH | Ensure IMAP and POP3 server is not enabled"
-  ansible.builtin.service:
+  service:
       name: dovecot
       state: stopped
       enabled: false
@@ -596,7 +596,7 @@
       - rule_2.2.11
 
 - name: "SCORED | 2.2.12 | PATCH | Ensure Samba is not enabled"
-  ansible.builtin.service:
+  service:
       name: smbd
       state: stopped
       enabled: false
@@ -613,7 +613,7 @@
       - rule_2.2.12
 
 - name: "SCORED | 2.2.13 | PATCH | Ensure HTTP Proxy Server is not enabled"
-  ansible.builtin.service:
+  service:
       name: squid
       state: stopped
       enabled: false
@@ -630,7 +630,7 @@
       - rule_2.2.13
 
 - name: "SCORED | 2.2.14 | PATCH | Ensure SNMP Server is not enabled"
-  ansible.builtin.service:
+  service:
       name: snmpd
       state: stopped
       enabled: false
@@ -647,7 +647,7 @@
       - rule_2.2.14
 
 - name: "SCORED | 2.2.15 | PATCH | Ensure mail transfer agent is configured for local-only mode"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/postfix/main.cf
       regexp: "^(#)?inet_interfaces"
       line: "inet_interfaces = localhost"
@@ -662,7 +662,7 @@
       - rule_2.2.15
 
 - name: "SCORED | 2.2.16 | PATCH | Ensure rsync service is not enabled "
-  ansible.builtin.service:
+  service:
       name: rsync
       state: stopped
       enabled: false
@@ -679,7 +679,7 @@
       - rule_2.2.16
 
 - name: "SCORED | 2.2.17 | PATCH | Ensure NIS Server is not enabled"
-  ansible.builtin.service:
+  service:
       name: nis
       state: stopped
       enabled: false
@@ -696,7 +696,7 @@
       - rule_2.2.17
 
 - name: "SCORED | 2.3.1 | PATCH | Ensure NIS Client is not installed"
-  ansible.builtin.apt:
+  apt:
       name: yp-tools
       state: absent
   when:
@@ -709,7 +709,7 @@
       - rule_2.3.1
 
 - name: "SCORED | 2.3.2 | PATCH | Ensure rsh client is not installed"
-  ansible.builtin.apt:
+  apt:
       name: rsh
       state: absent
   when:
@@ -722,7 +722,7 @@
       - rule_2.3.2
 
 - name: "SCORED | 2.3.3 | PATCH | Ensure talk client is not installed"
-  ansible.builtin.apt:
+  apt:
       name: talk
       state: absent
   when:
@@ -735,7 +735,7 @@
       - rule_2.3.3
 
 - name: "SCORED | 2.3.4 | PATCH | Ensure telnet client is not installed"
-  ansible.builtin.apt:
+  apt:
       name: telnet
       state: absent
   when:
@@ -748,7 +748,7 @@
       - rule_2.3.4
 
 - name: "SCORED | 2.3.5 | PATCH | Ensure LDAP client is not installed"
-  ansible.builtin.apt:
+  apt:
       name: ldap-utils
       state: absent
   when:
@@ -761,7 +761,7 @@
       - rule_2.3.5
 
 - name: "SCORED | 2.3.6 | PATCH | Ensure RPC is not installed"
-  ansible.builtin.apt:
+  apt:
       name: rpcbind
       state: absent
   when:
@@ -775,7 +775,7 @@
 
 - name: "NOTSCORED | 2.4 | PATCH | Ensure nonessential services are removed or masked"
   changed_when: false
-  ansible.builtin.debug:
+  debug:
       msg: >
           Run the following command:
           # lsof -i -P -n | grep -v "(ESTABLISHED)"

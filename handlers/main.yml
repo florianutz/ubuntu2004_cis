@@ -19,7 +19,7 @@
 
 - name: systemd restart tmp.mount
   become: true
-  ansible.builtin.systemd:
+  systemd:
       name: tmp.mount
       daemon_reload: true
       enabled: true
@@ -30,7 +30,7 @@
 
 - name: systemd restart var-tmp.mount
   become: true
-  ansible.builtin.systemd:
+  systemd:
       name: var-tmp.mount
       daemon_reload: true
       enabled: true
@@ -40,12 +40,12 @@
 
 - name: generate new grub config
   become: true
-  ansible.builtin.command: grub-mkconfig -o "{{ grub_cfg.stat.path }}"
+  command: grub-mkconfig -o "{{ grub_cfg.stat.path }}"
   notify: fix permissions after generate new grub config handler
 
 - name: fix permissions after generate new grub config handler
   become: true
-  ansible.builtin.file:
+  file:
       path: "/boot/grub/grub.cfg"
       owner: root
       group: root
@@ -56,35 +56,35 @@
 
 - name: restart firewalld
   become: true
-  ansible.builtin.service:
+  service:
       name: firewalld
       state: restarted
 
 - name: reload nftables
   become: true
-  ansible.builtin.service:
+  service:
       name: nftables
       state: reloaded
 
 - name: restart xinetd
   become: true
-  ansible.builtin.service:
+  service:
       name: xinetd
       state: restarted
 
 - name: restart sshd
   become: true
-  ansible.builtin.service:
+  service:
       name: sshd
       state: restarted
 
 - name: reload dconf
   become: true
-  ansible.builtin.command: dconf update
+  command: dconf update
 
 - name: restart auditd
   become: true
-  ansible.builtin.service:
+  service:
       name: auditd
       state: restarted
   when:
@@ -94,7 +94,7 @@
 
 - name: load audit rules
   become: true
-  ansible.builtin.command: /sbin/augenrules --load
+  command: /sbin/augenrules --load
   when:
       - not ubuntu2004cis_skip_for_travis
   tags:
@@ -102,7 +102,7 @@
 
 - name: restart systemd-coredump
   become: true
-  ansible.builtin.service:
+  service:
       name: systemd-coredump.socket
       daemon_reload: true
       enabled: true
@@ -110,6 +110,6 @@
 
 - name: restart journald
   become: true
-  ansible.builtin.service:
+  service:
       name: systemd-journald
       state: restarted
