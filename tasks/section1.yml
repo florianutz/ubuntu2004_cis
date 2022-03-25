@@ -1,6 +1,6 @@
 ---
 - name: "SCORED | 1.1.1.1 | PATCH | Ensure mounting of cramfs filesystems is disabled"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install cramfs(\\s|$)"
       line: "install cramfs /bin/true"
@@ -35,7 +35,7 @@
       - rule_1.1.1.1
 
 - name: "SCORED | 1.1.1.2 | PATCH | Ensure mounting of freevxfs filesystems is disabled"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install freevxfs"
       line: "install freevxfs /bin/true"
@@ -67,7 +67,7 @@
       - rule_1.1.1.2
 
 - name: "SCORED | 1.1.1.3 | PATCH | Ensure mounting of jffs2 filesystems is disabled"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install jffs2(\\s|$)"
       line: "install jffs2 /bin/true"
@@ -99,7 +99,7 @@
       - rule_1.1.1.3
 
 - name: "SCORED | 1.1.1.4 | PATCH | Ensure mounting of hfs filesystems is disabled"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install hfs(\\s|$)"
       line: "install hfs /bin/true"
@@ -131,7 +131,7 @@
       - rule_1.1.1.4
 
 - name: "SCORED | 1.1.1.5 | PATCH | Ensure mounting of hfsplus filesystems is disabled"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install hfsplus(\\s|$)"
       line: "install hfsplus /bin/true"
@@ -163,7 +163,7 @@
       - rule_1.1.1.5
 
 - name: "SCORED | 1.1.1.6 | PATCH | Ensure mounting of udf filesystems is disabled"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install udf(\\s|$)"
       line: "install udf /bin/true"
@@ -195,7 +195,7 @@
       - rule_1.1.1.6
 
 - name: "NOTSCORED | 1.1.1.7 | PATCH | Ensure mounting of FAT filesystems is limited"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install vfat(\\s|$)"
       line: "install vfat /bin/true"
@@ -227,7 +227,7 @@
       - rule_1.1.1.7
 
 - name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
-  ansible.builtin.copy:
+  copy:
       src: "{{ tmp_mount_file[ansible_os_family] }}"
       dest: /etc/systemd/system/tmp.mount
       owner: root
@@ -247,7 +247,7 @@
       - rule_1.1.2
 
 - name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
-  ansible.builtin.systemd:
+  systemd:
       name: tmp.mount
       daemon_reload: yes
       enabled: yes
@@ -314,7 +314,7 @@
       - rule_1.1.9
 
 - name: "SCORED | 1.1.10 | PATCH | Ensure separate partition exists for /var"
-  ansible.builtin.shell: mount | grep "on /var "
+  shell: mount | grep "on /var "
   register: var_mounted
   changed_when: false
   failed_when: false
@@ -330,7 +330,7 @@
       - skip_ansible_lint
 
 - name: "SCORED | 1.1.11 | PATCH | Ensure separate partition exists for /var/tmp"
-  ansible.builtin.shell: mount | grep "on /var/tmp "
+  shell: mount | grep "on /var/tmp "
   register: var_tmp_mounted
   changed_when: false
   failed_when: false
@@ -368,7 +368,7 @@
       - rule_1.1.14
 
 - name: "SCORED | 1.1.15 | PATCH | Ensure separate partition exists for /var/log"
-  ansible.builtin.shell: mount | grep "on /var/log "
+  shell: mount | grep "on /var/log "
   register: var_log_mounted
   changed_when: false
   failed_when: false
@@ -384,7 +384,7 @@
       - skip_ansible_lint
 
 - name: "SCORED | 1.1.16 | PATCH | Ensure separate partition exists for /var/log/audit"
-  ansible.builtin.shell: mount | grep "on /var/log/audit "
+  shell: mount | grep "on /var/log/audit "
   register: var_log_audit_mounted
   changed_when: false
   failed_when: false
@@ -400,7 +400,7 @@
       - skip_ansible_lint
 
 - name: "SCORED | 1.1.17 | PATCH | Ensure separate partition exists for /home"
-  ansible.builtin.shell: mount | grep "on /home "
+  shell: mount | grep "on /home "
   register: home_mounted
   changed_when: false
   failed_when: false
@@ -434,7 +434,7 @@
       - rule_1.1.18
 
 - name: "NOTSCORED | 1.1.19 | PATCH | Ensure nodev option set on removable media partitions"
-  ansible.builtin.command: /bin/true
+  command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_1_1_19
@@ -446,7 +446,7 @@
       - notimplemented
 
 - name: "NOTSCORED | 1.1.20 | PATCH | Ensure nosuid option set on removable media partitions"
-  ansible.builtin.command: /bin/true
+  command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_1_1_20
@@ -458,7 +458,7 @@
       - notimplemented
 
 - name: "NOTSCORED | 1.1.21 | PATCH | Ensure noexec option set on removable media partitions"
-  ansible.builtin.command: /bin/true
+  command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_1_1_21
@@ -470,7 +470,7 @@
       - notimplemented
 
 - name: "SCORED | 1.1.22 | PATCH | Ensure sticky bit is set on all world-writable directories"
-  ansible.builtin.shell: |
+  shell: |
       set -o pipefail;
       df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
   args:
@@ -487,7 +487,7 @@
       - rule_1.1.22
 
 - name: "SCORED | 1.1.23 | PATCH | Disable Automounting"
-  ansible.builtin.service:
+  service:
       name: autofs
       enabled: false
   when:
@@ -501,7 +501,7 @@
       - rule_1.1.23
 
 - name: "SCORED | 1.1.24 | PATCH | Disable USB Storage"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/modprobe.d/CIS.conf
       regexp: "^(#)?install usb-storage(\\s|$)"
       line: "install usb-storage /bin/true"
@@ -533,7 +533,7 @@
       - rule_1.1.24
 
 - name: "NOTSCORED | 1.2.1 | PATCH | Ensure package manager repositories are configured"
-  ansible.builtin.command: /bin/true
+  command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_1_2_1
@@ -545,7 +545,7 @@
       - notimplemented
 
 - name: "NOTSCORED | 1.2.2 | PATCH | Ensure GPG keys are configured"
-  ansible.builtin.command: /bin/true
+  command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_1_2_2
@@ -557,7 +557,7 @@
       - notimplemented
 
 - name: "SCORED | 1.3.1 | PATCH | Ensure sudo is installed"
-  ansible.builtin.apt:
+  apt:
       name:
           - sudo
       state: present
@@ -572,7 +572,7 @@
       - rule_1.3.1
 
 - name: "SCORED | 1.3.2 | PATCH | Ensure sudo commands use pty"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/sudoers
       state: present
       regexp: '^Defaults use_pty'
@@ -588,7 +588,7 @@
       - rule_1.3.2
 
 - name: "SCORED | 1.3.3 | PATCH | Ensure sudo log file exists"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/sudoers
       state: present
       regexp: '^Defaults logfile.*'
@@ -604,7 +604,7 @@
       - rule_1.3.3
 
 - name: "SCORED | 1.4.1 | PATCH | Ensure AIDE is installed (install nullmailer instead of postfix)"
-  ansible.builtin.apt:
+  apt:
       name:
           - nullmailer
       state: present
@@ -620,7 +620,7 @@
       - rule_1.4.1
 
 - name: "SCORED | 1.4.1 | PATCH | Ensure AIDE is installed"
-  ansible.builtin.apt:
+  apt:
       name:
           - aide
           - aide-common
@@ -636,7 +636,7 @@
       - rule_1.4.1
 
 - name: "SCORED | 1.4.1 | PATCH | Stat AIDE DB"
-  ansible.builtin.stat: path=/var/lib/aide/aide.db
+  stat: path=/var/lib/aide/aide.db
   register: aide_db
   tags:
       - level1
@@ -646,7 +646,7 @@
       - rule_1.4.1
 
 - name: "SCORED | 1.4.1 | PATCH | Init AIDE | This may take a LONG time"
-  ansible.builtin.command: /usr/sbin/aideinit
+  command: /usr/sbin/aideinit
   args:
       creates: /var/lib/aide/aide.db
   when:
@@ -662,7 +662,7 @@
       - rule_1.4.1
 
 - name: "SCORED | 1.4.2 | PATCH | Ensure filesystem integrity is regularly checked"
-  ansible.builtin.cron:
+  cron:
       name: Run AIDE integrity check weekly
       cron_file: "{{ ubuntu2004cis_aide_cron['cron_file'] }}"
       user: "{{ ubuntu2004cis_aide_cron['cron_user'] }}"
@@ -683,7 +683,7 @@
       - rule_1.4.2
 
 - name: "SCORED | 1.5.1 | PATCH | Ensure bootloader password is set - generate password"
-  ansible.builtin.shell: "set -o pipefail;
+  shell: "set -o pipefail;
         if [ '{{ ubuntu2004cis_bootloader_password }}' == 'random' ];
         then PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c12); else PASSWORD='{{ ubuntu2004cis_bootloader_password }}';
         fi;
@@ -702,7 +702,7 @@
       - rule_1.5.1
 
 - name: "SCORED | 1.5.1 | PATCH | Ensure bootloader password is set - generate config"
-  ansible.builtin.copy:
+  copy:
       dest: /etc/grub.d/00_password
       content: "cat << EOF\nset superusers=\"root\"\npassword_pbkdf2 root {{ grub_pass.stdout }}\nEOF"
       owner: root
@@ -720,7 +720,7 @@
       - rule_1.5.1
 
 - name: "SCORED | 1.5.1 | PATCH | Ensure bootloader password is set - disable password for system boot"
-  ansible.builtin.replace:
+  replace:
       path: /etc/grub.d/10_linux
       regexp: '--class os"'
       replace: '--class os --unrestricted"'
@@ -737,7 +737,7 @@
       - rule_1.5.1
 
 - name: "SCORED | 1.5.2 | PATCH | Ensure permissions on bootloader config are configured for grub.cfg"
-  ansible.builtin.file:
+  file:
       path: "/boot/grub/grub.cfg"
       owner: root
       group: root
@@ -753,7 +753,7 @@
       - rule_1.5.2
 
 - name: "SCORED | 1.5.2 | PATCH | Ensure permissions on bootloader config are configured for grub.conf"
-  ansible.builtin.file:
+  file:
       path: "/boot/grub/grub.conf"
       owner: root
       group: root
@@ -770,7 +770,7 @@
       - rule_1.5.2
 
 - name: "SCORED | 1.5.2 | PATCH | Ensure permissions on bootloader config are configured for menu.lst"
-  ansible.builtin.file:
+  file:
       path: "/boot/grub/menu.lst"
       owner: root
       group: root
@@ -787,7 +787,7 @@
       - rule_1.5.2
 
 - name: "SCORED | 1.5.3 | PATCH | Ensure authentication required for single user mode"
-  ansible.builtin.shell: "set -o pipefail;
+  shell: "set -o pipefail;
           if [ '{{ ubuntu2004cis_root_password }}' == 'random' ];
           then PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c24); else PASSWORD='{{ ubuntu2004cis_root_password }}';
           fi;
@@ -804,7 +804,7 @@
       - rule_1.5.3
 
 - name: "SCORED | 1.6.1 | PATCH | Ensure XD/NX support is enabled"
-  ansible.builtin.shell: |
+  shell: |
       set -o pipefail;
       dmesg | grep -E "NX|XD" | grep " active"
   args:
@@ -837,7 +837,7 @@
       - rule_1.6.2
 
 - name: "SCORED | 1.6.3 | PATCH | Ensure prelink is disabled"
-  ansible.builtin.command: prelink -ua
+  command: prelink -ua
   when:
       - prelink_installed.rc == 0
       - ubuntu2004cis_rule_1_6_3
@@ -848,7 +848,7 @@
       - rule_1.6.3
 
 - name: "SCORED | 1.6.3 | PATCH | Ensure prelink is disabled"
-  ansible.builtin.apt:
+  apt:
       name: prelink
       state: absent
   when:
@@ -877,7 +877,7 @@
       - rule_1.6.4
 
 - name: "SCORED | 1.6.4 | PATCH | Ensure systemd-coredump is installed"
-  ansible.builtin.apt:
+  apt:
       name: systemd-coredump
       state: present
   notify: restart systemd-coredump
@@ -890,7 +890,7 @@
       - rule_1.6.4
 
 - name: "SCORED | 1.6.4 | PATCH | Ensure hard core 0 is set"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: /etc/security/limits.conf
       line: '*                hard    core            0'
       regexp: '(^#)?\*\s+hard\s+core\s+[0-9]+'
@@ -907,7 +907,7 @@
       - rule_1.6.4
 
 - name: "SCORED | 1.7.1.1 | PATCH | Ensure AppArmor is installed"
-  ansible.builtin.apt:
+  apt:
       name:
           - apparmor
           - apparmor-utils
@@ -923,7 +923,7 @@
 - name: "SCORED | 1.7.1.2 | PATCH | Ensure AppArmor is enabled in the bootloader configuration"
   block:
       - name: "SCORED | 1.7.1.2 | PATCH | Ensure AppArmor is enabled in the bootloader configuration"
-        ansible.builtin.replace:
+        replace:
             dest: /etc/default/grub
             regexp: '^(GRUB_CMDLINE_LINUX=(?!.*apparmor)\"[^\"]*)(\".*)'
             replace: '\1 apparmor=1 security=apparmor\2'
@@ -931,7 +931,7 @@
             - generate new grub config
 
       - name: "SCORED | 1.7.1.2 | PATCH | Ensure AppArmor Security is enabled in the bootloader configuration"
-        ansible.builtin.replace:
+        replace:
             dest: /etc/default/grub
             regexp: '^(GRUB_CMDLINE_LINUX=(?!.*security)\"[^\"]*)(\".*)'
             replace: '\1 security=apparmor\2'
@@ -946,7 +946,7 @@
       - rule_1.7.1.2
 
 - name: "SCORED | 1.7.1.3 | PATCH | Ensure all AppArmor Profiles are in enforce or complain mode"
-  ansible.builtin.command: /bin/true
+  command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_1_7_1_3
@@ -958,7 +958,7 @@
       - notimplemented
 
 - name: "SCORED | 1.7.1.4 | PATCH |  Ensure all AppArmor Profiles are enforcing"
-  ansible.builtin.command: /bin/true
+  command: /bin/true
   changed_when: false
   when:
       - ubuntu2004cis_rule_1_7_1_4
@@ -970,7 +970,7 @@
       - notimplemented
 
 - name: "SCORED | 1.8.1.1 | PATCH | Ensure message of the day is configured properly"
-  ansible.builtin.template:
+  template:
       src: etc/motd.j2
       dest: /etc/motd
   when:
@@ -983,7 +983,7 @@
       - rule_1.8.1.1
 
 - name: "SCORED | 1.8.1.2 | PATCH | Ensure local login warning banner is configured properly"
-  ansible.builtin.template:
+  template:
       src: etc/issue.j2
       dest: /etc/issue
   when:
@@ -996,7 +996,7 @@
       - rule_1.8.1.2
 
 - name: "SCORED | 1.8.1.3 | PATCH | Ensure remote login warning banner is configured properly"
-  ansible.builtin.template:
+  template:
       src: etc/issue.net.j2
       dest: /etc/issue.net
   when:
@@ -1009,7 +1009,7 @@
       - rule_1.8.1.3
 
 - name: "SCORED | 1.8.1.4 | PATCH | Ensure permissions on /etc/motd are configured"
-  ansible.builtin.file:
+  file:
       dest: /etc/motd
       state: file
       owner: root
@@ -1025,7 +1025,7 @@
       - rule_1.8.1.4
 
 - name: "SCORED | 1.8.1.5 | PATCH | Ensure permissions on /etc/issue are configured"
-  ansible.builtin.file:
+  file:
       dest: /etc/issue
       state: file
       owner: root
@@ -1041,7 +1041,7 @@
       - rule_1.8.1.5
 
 - name: "SCORED | 1.8.1.6 | PATCH | Ensure permissions on /etc/issue.net are configured"
-  ansible.builtin.file:
+  file:
       dest: /etc/issue.net
       state: file
       owner: root
@@ -1057,7 +1057,7 @@
       - rule_1.8.1.6
 
 - name: "NOTSCORED | 1.9 | PATCH | Ensure updates, patches, and additional security software are installed"
-  ansible.builtin.apt:
+  apt:
       upgrade: dist
   when:
       - ubuntu2004cis_apply_upgrades
@@ -1069,7 +1069,7 @@
       - skip_ansible_lint
 
 - name: "SCORED | 1.10 | PATCH | Ensure GDM login banner is configured"
-  ansible.builtin.lineinfile:
+  lineinfile:
       dest: "{{ item.file }}"
       regexp: "{{ item.regexp }}"
       line: "{{ item.line }}"
