@@ -765,14 +765,14 @@
       - OUTPUT
       - FORWARD
   when:
-      - ubuntu2004cis_rule_3_5_3_1_3
+      - ubuntu2004cis_rule_3_5_3_1_2
       - ubuntu2004cis_firewall == "iptables"
       - ubuntu2004cis_setup_firewall
   tags:
       - level1
       - scored
       - patch
-      - rule_3.5.3.1.3
+      - rule_3.5.3.1.2
 
 - name: "SCORED | 3.5.3.2.2 | PATCH | Ensure loopback traffic is configured"
   block:
