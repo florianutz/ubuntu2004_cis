@@ -661,6 +661,17 @@
       - patch
       - rule_1.4.1
 
+- name: "SCORED | 1.4.1 | PATCH | Stat AIDE daily cron"
+  stat: path=/etc/cron.daily/aide
+  register: aide_daily_cron
+  tags:
+    - level1
+    - scored
+    - aide
+    - file_integrity
+    - patch
+    - rule_1.4.2
+
 - name: "SCORED | 1.4.2 | PATCH | Ensure filesystem integrity is regularly checked"
   cron:
       name: Run AIDE integrity check weekly
@@ -670,10 +681,11 @@
       hour: "{{ ubuntu2004cis_aide_cron['aide_hour'] | default('5') }}"
       day: "{{ ubuntu2004cis_aide_cron['aide_day'] | default('*') }}"
       month: "{{ ubuntu2004cis_aide_cron['aide_month'] | default('*') }}"
-      weekday: "{{ ubuntu2004cis_aide_cron['aide_weekday'] | default('*') }}"
+      weekday: "{{ ubuntu2004cis_aide_cron['aide_weekday'] | default('0') }}"
       job: "{{ ubuntu2004cis_aide_cron['aide_job'] }}"
   when:
       - ubuntu2004cis_rule_1_4_2
+      - not aide_daily_cron.stat.exists
   tags:
       - level1
       - scored
