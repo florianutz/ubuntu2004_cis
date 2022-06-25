@@ -17,7 +17,7 @@ jobs:
           path: "${{ github.repository }}"
 
       - name: Molecule
-        uses: gofrolist/molecule-action@v2.2.29
+        uses: gofrolist/molecule-action@v2.2.28
         with:
           molecule_command: test
           molecule_args: -d docker
