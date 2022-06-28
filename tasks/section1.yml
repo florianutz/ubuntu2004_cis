@@ -162,37 +162,19 @@
       - filesystems
       - rule_1.1.1.5
 
-- name: "SCORED | 1.1.1.6 | PATCH | Ensure mounting of squashfs filesystems is disabled"
-  lineinfile:
-      dest: /etc/modprobe.d/CIS.conf
-      regexp: "^(#)?install squashfs(\\s|$)"
-      line: "install squashfs /bin/true"
-      state: present
-      create: true
+- name: "NOTSCORED | 1.1.1.6 | PATCH | Ensure mounting of squashfs filesystems is disabled"
+  command: /bin/true
+  changed_when: false
   when:
       - ubuntu2004cis_rule_1_1_1_6
   tags:
-      - level1
-      - scored
+      - level2
+      - notscored
       - patch
       - squashfs
       - filesystems
       - rule_1.1.1.6
-
-- name: "SCORED | 1.1.1.6 | PATCH | Remove squashfs module"
-  modprobe:
-      name: squashfs
-      state: absent
-  when:
-      - ubuntu2004cis_rule_1_1_1_6
-      - not ubuntu2004cis_skip_for_travis
-  tags:
-      - level1
-      - scored
-      - patch
-      - squashfs
-      - filesystems
-      - rule_1.1.1.6
+      - notimplemented
 
 - name: "SCORED | 1.1.1.7 | PATCH | Ensure mounting of udf filesystems is disabled"
   lineinfile:
