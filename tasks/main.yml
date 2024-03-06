@@ -32,17 +32,17 @@
   when: ubuntu2004cis_section2
   tags: section2
 
-- include_task: section3.yml
+- include_tasks: section3.yml
 #  become: true
   when: ubuntu2004cis_section3
   tags: section3
 
-- include_task: section4.yml
+- include_tasks: section4.yml
 #  become: true
   when: ubuntu2004cis_section4
   tags: section4
 
-- include_task: section5.yml
+- include_tasks: section5.yml
 #  become: true
   when: ubuntu2004cis_section5
   tags: section5
