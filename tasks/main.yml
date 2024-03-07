@@ -2,7 +2,7 @@
 # tasks file for Ubuntu2004-CIS
 - name: Check OS version and family
   fail:
-      msg: "This role can only be run agaist Ubuntu 20.04. {{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
+      msg: "This task can only be run agaist Ubuntu 20.04. {{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
   when:
       - not ansible_distribution == "Ubuntu"
       - not ansible_distribution_release == "focal"
@@ -16,44 +16,36 @@
   tags:
       - always
 
-- include: prelim.yml
-  become: true
+- include_tasks: prelim.yml
   tags:
       - prelim_tasks
       - always
 
-- include: section1.yml
-  become: true
+- include_tasks: section1.yml
   when: ubuntu2004cis_section1
   tags: section1
 
-- include: section2.yml
-  become: true
+- include_tasks: section2.yml
   when: ubuntu2004cis_section2
   tags: section2
 
-- include: section3.yml
-  become: true
+- include_tasks: section3.yml
   when: ubuntu2004cis_section3
   tags: section3
 
-- include: section4.yml
-  become: true
+- include_tasks: section4.yml
   when: ubuntu2004cis_section4
   tags: section4
 
-- include: section5.yml
-  become: true
+- include_tasks: section5.yml
   when: ubuntu2004cis_section5
   tags: section5
 
-- include: section6.yml
-  become: true
+- include_tasks: section6.yml
   when: ubuntu2004cis_section6
   tags: section6
 
-- include: post.yml
-  become: true
+- include_tasks: post.yml
   tags:
       - post_tasks
       - always
